@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public static class TextureGenerator
 {
 
-	public static Texture2D TextureFromColourMap(Color[] colourMap, int width, int height)
+    public static Texture2D TextureFromColourMap(Color[] colourMap, int width, int height)
     {
         Texture2D texture = new Texture2D(width, height);
         texture.filterMode = FilterMode.Point;
@@ -14,6 +13,7 @@ public static class TextureGenerator
         texture.Apply();
         return texture;
     }
+
 
     public static Texture2D TextureFromHeightMap(float[,] heightMap)
     {
@@ -28,6 +28,8 @@ public static class TextureGenerator
                 colourMap[y * width + x] = Color.Lerp(Color.black, Color.white, heightMap[x, y]);
             }
         }
+
         return TextureFromColourMap(colourMap, width, height);
     }
+
 }

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class MapDisplay : MonoBehaviour {
+public class MapDisplay : MonoBehaviour
+{
 
     public Renderer textureRender;
     public MeshFilter meshFilter;
@@ -19,4 +19,5 @@ public class MapDisplay : MonoBehaviour {
         meshFilter.sharedMesh = meshData.CreateMesh();
         meshRenderer.sharedMaterial.mainTexture = texture;
     }
+
 }

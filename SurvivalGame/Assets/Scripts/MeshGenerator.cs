@@ -1,11 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public static class MeshGenerator
 {
-    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve heightCurve, int levelOfDetail)
+
+    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail)
     {
+        AnimationCurve heightCurve = new AnimationCurve(_heightCurve.keys);
+
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
         float topLeftX = (width - 1) / -2f;
@@ -35,6 +37,7 @@ public static class MeshGenerator
         }
 
         return meshData;
+
     }
 }
 
@@ -51,14 +54,13 @@ public class MeshData
         vertices = new Vector3[meshWidth * meshHeight];
         uvs = new Vector2[meshWidth * meshHeight];
         triangles = new int[(meshWidth - 1) * (meshHeight - 1) * 6];
-        
     }
 
     public void AddTriangle(int a, int b, int c)
     {
         triangles[triangleIndex] = a;
-        triangles[triangleIndex+1] = b;
-        triangles[triangleIndex+2] = c;
+        triangles[triangleIndex + 1] = b;
+        triangles[triangleIndex + 2] = c;
         triangleIndex += 3;
     }
 
@@ -71,4 +73,5 @@ public class MeshData
         mesh.RecalculateNormals();
         return mesh;
     }
+
 }
