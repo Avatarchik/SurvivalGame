@@ -15,7 +15,7 @@ public class LowPolyWater : MonoBehaviour
     /// <summary>
     /// Subdivides each quad of the mesh for smaller quads
     /// </summary>
-    private void SubdivideMesh()
+    public void SubdivideMesh()
     {
         Mesh current = GetComponent<MeshFilter>().sharedMesh;
         Mesh newMesh = Instantiate(current);
