@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44819915, g: 0.49822098, b: 0.5755675, a: 1}
+  m_IndirectSpecularColor: {r: 0.44535142, g: 0.4893598, b: 0.54361594, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -644,13 +644,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 962081135}
-  m_LocalRotation: {x: 0.37941256, y: -0.061106313, z: 0.1861515, w: 0.90424544}
+  m_LocalRotation: {x: 0.13212213, y: -0.0063347947, z: 0.20587286, w: 0.96959794}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 45.143, y: 2.426, z: 24.113}
+  m_LocalEulerAnglesHint: {x: 15, y: 2.499, z: 24.304}
 --- !u!114 &962081138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,9 +665,9 @@ MonoBehaviour:
   SampleCount: 8
   ScatteringCoef: 0.5
   ExtinctionCoef: 0.01
-  SkyboxExtinctionCoef: 0.9
-  MieG: 0.1
-  HeightFog: 0
+  SkyboxExtinctionCoef: 0
+  MieG: 0.85
+  HeightFog: 1
   HeightScale: 0.1
   GroundLevel: 0
   Noise: 0
@@ -675,7 +675,7 @@ MonoBehaviour:
   NoiseIntensity: 1
   NoiseIntensityOffset: 0.3
   NoiseVelocity: {x: 3, y: 3}
-  MaxRayLength: 400
+  MaxRayLength: 500
 --- !u!1 &1008436972
 GameObject:
   m_ObjectHideFlags: 0
