@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
---- !u!43 &432425775
+--- !u!43 &490209175
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -366,7 +366,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 522957207}
-  m_Mesh: {fileID: 432425775}
+  m_Mesh: {fileID: 490209175}
 --- !u!4 &522957210
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 962081137}
   - component: {fileID: 962081136}
+  - component: {fileID: 962081138}
   m_Layer: 0
   m_Name: Directional light
   m_TagString: Untagged
@@ -602,7 +603,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -650,6 +651,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45.143, y: 2.426, z: 24.113}
+--- !u!114 &962081138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962081135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafc90245bfe9e2408e358f71deace2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SampleCount: 8
+  ScatteringCoef: 0.5
+  ExtinctionCoef: 0.01
+  SkyboxExtinctionCoef: 0.9
+  MieG: 0.1
+  HeightFog: 0
+  HeightScale: 0.1
+  GroundLevel: 0
+  Noise: 0
+  NoiseScale: 0.015
+  NoiseIntensity: 1
+  NoiseIntensityOffset: 0.3
+  NoiseVelocity: {x: 3, y: 3}
+  MaxRayLength: 400
 --- !u!1 &1008436972
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +723,10 @@ MonoBehaviour:
     visibleDstThreshold: 800
   - lod: 2
     visibleDstThreshold: 1000
+  - lod: 3
+    visibleDstThreshold: 1600
+  - lod: 4
+    visibleDstThreshold: 2200
   meshSettings: {fileID: 11400000, guid: c10e09cb6139e9a4a840c4fa72feb5aa, type: 2}
   heightMapSettings: {fileID: 11400000, guid: dc56cfa40ebb6824da4bf42fd3406a95, type: 2}
   textureSettings: {fileID: 11400000, guid: 291037b13be05c14eb7bb47fef78a6c6, type: 2}
@@ -740,18 +770,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9067c6ae0fa563d47bd32d201d72f521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostPrefab: {fileID: 0}
   clientPrefab: {fileID: 1416140639532186, guid: 78bcee562a2ad3b4eb72814f6e62b614,
     type: 2}
-  cam: {fileID: 0}
   spawn: {fileID: 1151350329}
   playerData: []
   showBrowser: 0
   createServer: 0
-  team1Amount: 0
-  team2Amount: 0
-  team1AmountMax: 5
-  team2AmountMax: 5
 --- !u!4 &1151350329
 Transform:
   m_ObjectHideFlags: 0

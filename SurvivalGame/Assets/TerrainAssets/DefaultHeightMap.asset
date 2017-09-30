@@ -98,14 +98,14 @@ MonoBehaviour:
       outSlope: 2.0733116
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.9413238
-      value: 1.5252376
-      inSlope: 6.254869
-      outSlope: 6.254869
+      time: 0.9250903
+      value: 1.4573717
+      inSlope: 4.1166954
+      outSlope: 4.1166954
       tangentMode: 0
     - serializedVersion: 2
-      time: 1.0016068
-      value: 2.1212404
+      time: 1.0000081
+      value: 1.8090575
       inSlope: 2
       outSlope: 2
       tangentMode: 0

@@ -31,6 +31,8 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu = !pauseMenu;
@@ -101,6 +103,10 @@ public class PlayerManager : MonoBehaviour
 
         if (pauseMenu)
         {
+            controller.enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             GUI.BeginGroup(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 250, 250, 500), "");
 
             GUI.Box(new Rect(0, 0, 250, 500), "Paused");
@@ -113,6 +119,12 @@ public class PlayerManager : MonoBehaviour
             }*/
 
             GUI.EndGroup();
+        }
+        else
+        {
+            controller.enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
