@@ -7,7 +7,7 @@ public class Tree : MonoBehaviour
     public bool debug = false;
 
     RaycastHit hit;
-    NetworkView view;
+    public NetworkView view;
 
     public bool hitTerrain = false;
 

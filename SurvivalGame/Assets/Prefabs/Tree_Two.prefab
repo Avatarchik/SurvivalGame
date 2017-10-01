@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  view: {fileID: 148458371068040832}
   hitTerrain: 0
   rayOrigin: {x: 0, y: -9.1, z: 0.5}
   mask:
