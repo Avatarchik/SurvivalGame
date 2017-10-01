@@ -31,7 +31,22 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.forward, out hit))
+            {
+                Debug.Log("Ray hitting something");
+                if (hit.transform.gameObject.tag == "Terrain")
+                {
+                    Debug.Log("Player Hit Terrain");
+                }
+                else if (hit.transform.gameObject.tag != "Terrain")
+                {
+                    Debug.Log("hit something that wasnt terrain, i hit: " + hit.transform.gameObject.tag);
+                }
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -43,7 +58,7 @@ public class PlayerManager : MonoBehaviour
             controller.enabled = true;
             cam.SetActive(true);
             manager.enabled = true;
-            //model.SetActive (false);
+            model.SetActive (false);
 			/*model2.SetActive (false);
 			model3.SetActive (false);
 			thirdPersonGun.SetActive (false);*/

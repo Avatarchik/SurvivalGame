@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class TerrainChunk {
-	
+
+    public List<GameObject> treeList;
+
 	const float colliderGenerationDistanceThreshold = 5;
 	public event System.Action<TerrainChunk, bool> onVisibilityChanged;
 	public Vector2 coord;
-	 
+
 	GameObject meshObject;
 	Vector2 sampleCentre;
 	Bounds bounds;
@@ -28,15 +31,22 @@ public class TerrainChunk {
 	MeshSettings meshSettings;
 	Transform viewer;
 
+    void Start()
+    {
+    }
+
 	public TerrainChunk(Vector2 coord, HeightMapSettings heightMapSettings, MeshSettings meshSettings, LODInfo[] detailLevels, int colliderLODIndex, Transform parent, Transform viewer, Material material) {
-		this.coord = coord;
+
+        this.coord = coord;
 		this.detailLevels = detailLevels;
 		this.colliderLODIndex = colliderLODIndex;
 		this.heightMapSettings = heightMapSettings;
 		this.meshSettings = meshSettings;
 		this.viewer = viewer;
 
-		sampleCentre = coord * meshSettings.meshWorldSize / meshSettings.meshScale;
+        treeList = GameObject.FindObjectOfType<TerrainGenerator>().treeObjects;
+
+        sampleCentre = coord * meshSettings.meshWorldSize / meshSettings.meshScale;
 		Vector2 position = coord * meshSettings.meshWorldSize ;
 		bounds = new Bounds(position,Vector2.one * meshSettings.meshWorldSize );
 
@@ -49,6 +59,8 @@ public class TerrainChunk {
 
 		meshObject.transform.position = new Vector3(position.x,0,position.y);
 		meshObject.transform.parent = parent;
+        meshObject.gameObject.tag = "Terrain";
+        meshObject.gameObject.layer = LayerMask.NameToLayer("Terrain");
 		SetVisible(false);
 
 		lodMeshes = new LODMesh[detailLevels.Length];
@@ -60,9 +72,8 @@ public class TerrainChunk {
 			}
 		}
 
-		maxViewDst = detailLevels [detailLevels.Length - 1].visibleDstThreshold;
-
-	}
+        maxViewDst = detailLevels [detailLevels.Length - 1].visibleDstThreshold;
+    }
 
 	public void Load() {
 		ThreadedDataRequester.RequestData(() => HeightMapGenerator.GenerateHeightMap (meshSettings.numVertsPerLine, meshSettings.numVertsPerLine, heightMapSettings, sampleCentre), OnHeightMapReceived);
@@ -78,14 +89,15 @@ public class TerrainChunk {
 	}
 
 	Vector2 viewerPosition {
-		get {
+		get
+        {
 			return new Vector2 (viewer.position.x, viewer.position.z);
 		}
 	}
 
-
-	public void UpdateTerrainChunk() {
-		if (heightMapReceived) {
+    public void UpdateTerrainChunk() {
+		if (heightMapReceived)
+        {
 			float viewerDstFromNearestEdge = Mathf.Sqrt (bounds.SqrDistance (viewerPosition));
 
 			bool wasVisible = IsVisible ();
@@ -112,8 +124,7 @@ public class TerrainChunk {
 					}
 				}
 
-
-			}
+            }
 
 			if (wasVisible != visible) {
 				
@@ -139,7 +150,19 @@ public class TerrainChunk {
 				if (lodMeshes [colliderLODIndex].hasMesh) {
 					meshCollider.sharedMesh = lodMeshes [colliderLODIndex].mesh;
 					hasSetCollider = true;
-				}
+
+                    if (5 < colliderGenerationDistanceThreshold * colliderGenerationDistanceThreshold)
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Vector3 treePos = new Vector3(coord.x * 100 + Random.Range(-50, 50), 25, coord.y * 100 + Random.Range(-50, 50));
+                            Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
+                            GameObject curTree = Network.Instantiate(treeList[0], treePos, treeRot, 0) as GameObject;
+                            curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);
+                            curTree.transform.parent = meshObject.transform;
+                        }
+                    }
+                }
 			}
 		}
 	}

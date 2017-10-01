@@ -7,6 +7,7 @@ public class TerrainGenerator : MonoBehaviour {
 	const float viewerMoveThresholdForChunkUpdate = 25f;
 	const float sqrViewerMoveThresholdForChunkUpdate = viewerMoveThresholdForChunkUpdate * viewerMoveThresholdForChunkUpdate;
 
+    public NetworkView view;
 
     bool hasStarted = true;
 
@@ -29,7 +30,9 @@ public class TerrainGenerator : MonoBehaviour {
 	Dictionary<Vector2, TerrainChunk> terrainChunkDictionary = new Dictionary<Vector2, TerrainChunk>();
 	List<TerrainChunk> visibleTerrainChunks = new List<TerrainChunk>();
 
-	void Start() {
+    public List<GameObject> treeObjects;
+
+    void Start() {
         if (!hasStarted)
         {
             textureSettings.ApplyToMaterial(mapMaterial);
@@ -92,7 +95,7 @@ public class TerrainGenerator : MonoBehaviour {
 						terrainChunkDictionary.Add (viewedChunkCoord, newChunk);
 						newChunk.onVisibilityChanged += OnTerrainChunkVisibilityChanged;
 						newChunk.Load ();
-					}
+                    }
 				}
 
 			}
