@@ -31,8 +31,11 @@ public class TerrainChunk {
 	MeshSettings meshSettings;
 	Transform viewer;
 
+    NetworkView view;
+
     void Start()
     {
+        view = meshObject.AddComponent<NetworkView>();
     }
 
 	public TerrainChunk(Vector2 coord, HeightMapSettings heightMapSettings, MeshSettings meshSettings, LODInfo[] detailLevels, int colliderLODIndex, Transform parent, Transform viewer, Material material) {
@@ -96,6 +99,8 @@ public class TerrainChunk {
 	}
 
     public void UpdateTerrainChunk() {
+
+
 		if (heightMapReceived)
         {
 			float viewerDstFromNearestEdge = Mathf.Sqrt (bounds.SqrDistance (viewerPosition));
@@ -137,7 +142,8 @@ public class TerrainChunk {
 	}
 
 	public void UpdateCollisionMesh() {
-		if (!hasSetCollider) {
+
+        if (!hasSetCollider) {
 			float sqrDstFromViewerToEdge = bounds.SqrDistance (viewerPosition);
 
 			if (sqrDstFromViewerToEdge < detailLevels [colliderLODIndex].sqrVisibleDstThreshold) {

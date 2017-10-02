@@ -13,8 +13,12 @@ public class SunRotation : MonoBehaviour {
 
 	float sunInitialIntensity;
 
+    NetworkView view;
+
 	void Start() {
 		sunInitialIntensity = sun.intensity;
+
+        view = GetComponent<NetworkView>();
 	}
 
 	void Update() {
@@ -25,7 +29,15 @@ public class SunRotation : MonoBehaviour {
 		if (currentTimeOfDay >= 1) {
 			currentTimeOfDay = 0;
 		}
+
+        view.RPC("UpdateTimeOfDay", RPCMode.OthersBuffered, currentTimeOfDay);
 	}
+
+    [RPC]
+    void UpdateTimeOfDay(float newTimeOfDay)
+    {
+        currentTimeOfDay = newTimeOfDay;
+    }
 
 	void UpdateSun() {
 		sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
