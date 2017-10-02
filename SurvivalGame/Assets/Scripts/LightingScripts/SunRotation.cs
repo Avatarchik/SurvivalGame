@@ -13,6 +13,8 @@ public class SunRotation : MonoBehaviour {
 
 	float sunInitialIntensity;
 
+    float lastTimeOfDay;
+
     NetworkView view;
 
 	void Start() {
@@ -29,13 +31,16 @@ public class SunRotation : MonoBehaviour {
 		if (currentTimeOfDay >= 1) {
 			currentTimeOfDay = 0;
 		}
-
-        view.RPC("UpdateTimeOfDay", RPCMode.OthersBuffered, currentTimeOfDay);
+        if (lastTimeOfDay < currentTimeOfDay)
+        {
+            view.RPC("UpdateTimeOfDay", RPCMode.OthersBuffered, currentTimeOfDay);
+        }
 	}
 
     [RPC]
     void UpdateTimeOfDay(float newTimeOfDay)
     {
+        lastTimeOfDay = currentTimeOfDay;
         currentTimeOfDay = newTimeOfDay;
     }
 
