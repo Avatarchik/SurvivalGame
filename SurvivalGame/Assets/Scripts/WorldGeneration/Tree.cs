@@ -14,9 +14,11 @@ public class Tree : MonoBehaviour
     public Vector3 rayOrigin;
 
     public LayerMask mask;
+    MeshRenderer render;
 
     void Start ()
     {
+        render = GetComponent<MeshRenderer>();
         /*MeshCollider col = GetComponent<MeshCollider>();
         Debug.Log("Tree Initialised");
 
@@ -54,6 +56,10 @@ public class Tree : MonoBehaviour
         {
             Vector3 newPos = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
             transform.position = newPos;
+        }
+        else
+        {
+            render.enabled = true;
         }
     }
 }
