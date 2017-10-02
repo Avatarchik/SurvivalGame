@@ -159,14 +159,14 @@ public class TerrainChunk {
 
                     for (int i = 0; i < 10; i++)
                     {
-                        view.RPC("CreateTree", RPCMode.Others);
+                        //view.RPC("CreateTree", RPCMode.OthersBuffered);
+                        CreateTree();
                     }
                 }
 			}
 		}
 	}
 
-    [RPC]
     void CreateTree()
     {
         Vector3 treePos = new Vector3(coord.x * 100 + Random.Range(-50, 50), 25, coord.y * 100 + Random.Range(-50, 50));
