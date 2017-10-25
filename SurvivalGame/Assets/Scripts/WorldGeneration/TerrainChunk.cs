@@ -33,9 +33,12 @@ public class TerrainChunk {
 
     NetworkView view;
 
+    TerrainGenerator gen;
+
     void Start()
     {
         view = meshObject.AddComponent<NetworkView>();
+        gen = GameObject.FindObjectOfType<TerrainGenerator>();
     }
 
 	public TerrainChunk(Vector2 coord, HeightMapSettings heightMapSettings, MeshSettings meshSettings, LODInfo[] detailLevels, int colliderLODIndex, Transform parent, Transform viewer, Material material) {
@@ -154,22 +157,22 @@ public class TerrainChunk {
 				}
 			}
 
-			//if (sqrDstFromViewerToEdge < colliderGenerationDistanceThreshold * colliderGenerationDistanceThreshold * colliderGenerationDistanceThreshold) {
-				if (lodMeshes [colliderLODIndex].hasMesh)
-                {
-					meshCollider.sharedMesh = lodMeshes [colliderLODIndex].mesh;
-					hasSetCollider = true;
+			if (lodMeshes [colliderLODIndex].hasMesh)
+            {
+				meshCollider.sharedMesh = lodMeshes [colliderLODIndex].mesh;
+				hasSetCollider = true;
 
-                    for (int i = 0; i < 10; i++)
-                    {
-                        //view.RPC("CreateTree", RPCMode.OthersBuffered);
-                        CreateTree();
-                    }
-                }
-			//}
+                /*GameObject treePlacer;
+                Vector3 treePos = new Vector3(coord.x * 100, 25, coord.y * 100);
+                treePlacer = Instantiate(gen.treePlacer, treePos, Quaternion.identity,0) as GameObject;
+                treePlacer.transform.parent = meshObject.transform;
+                PropPlacer treePl = treePlacer.GetComponent<PropPlacer>();
+                treePl.coord = coord;*/
+            }
 		}
 	}
 
+    [RPC]
     void CreateTree()
     {
         Vector3 treePos = new Vector3(coord.x * 100 + Random.Range(-50, 50), 25, coord.y * 100 + Random.Range(-50, 50));
