@@ -41,6 +41,8 @@ public class TerrainChunk {
     {
         view = meshObject.AddComponent<NetworkView>();
         gen = GameObject.FindObjectOfType<TerrainGenerator>();
+
+        view.RPC("TreesGenerated", RPCMode.AllBuffered, hasTreesGen);
     }
 
 	public TerrainChunk(Vector2 coord, HeightMapSettings heightMapSettings, MeshSettings meshSettings, LODInfo[] detailLevels, int colliderLODIndex, Transform parent, Transform viewer, Material material) {
@@ -172,6 +174,7 @@ public class TerrainChunk {
                     {
                         CreateTree();
                         hasTreesGen = true;
+
                         view.RPC("TreesGenerated", RPCMode.AllBuffered, hasTreesGen);
                     }
                 }

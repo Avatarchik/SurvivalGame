@@ -20,7 +20,7 @@ MonoBehaviour:
     lacunarity: 2.1
     seed: 420695
     offset: {x: 0, y: 0}
-  useFalloff: 0
+  useFalloff: 1
   heightMultiplier: 150
   heightCurve:
     serializedVersion: 2
