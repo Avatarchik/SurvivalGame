@@ -145,7 +145,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b0872f84cf3c7441d893168677410c73, type: 2}
+  - {fileID: 2100000, guid: 5e0413f56c4b0d845a8b5b73a1188825, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 962081136}
-  secondsInFullDay: 120
-  currentTimeOfDay: 0
+  secondsInFullDay: 600
+  currentTimeOfDay: 0.25
   timeMultiplier: 1
 --- !u!148 &962081140
 NetworkView:
@@ -440,6 +440,10 @@ MonoBehaviour:
   mapMaterial: {fileID: 2100000, guid: b0872f84cf3c7441d893168677410c73, type: 2}
   treeObjects:
   - {fileID: 1339388202990282, guid: c24f11ccbe165944cad25b598988758c, type: 2}
+  rockObjects:
+  - {fileID: 100000, guid: ac00723e610cb3041a14088ef40f078f, type: 3}
+  - {fileID: 100000, guid: 0e0d9c993af9d7e4184ad56cb8399d78, type: 3}
+  - {fileID: 100000, guid: 313792eafe55a4e4bad1a03fd228d53a, type: 3}
 --- !u!114 &1008436977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +495,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1151350327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 50, z: 0}
+  m_LocalPosition: {x: 25, y: 150, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

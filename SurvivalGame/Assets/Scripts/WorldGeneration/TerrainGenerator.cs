@@ -31,6 +31,8 @@ public class TerrainGenerator : MonoBehaviour {
 	List<TerrainChunk> visibleTerrainChunks = new List<TerrainChunk>();
 
     public List<GameObject> treeObjects;
+    public List<GameObject> rockObjects;
+
 
     void Start() {
         if (!hasStarted)

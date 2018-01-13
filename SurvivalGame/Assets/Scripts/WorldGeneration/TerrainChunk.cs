@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class TerrainChunk {
 
     public List<GameObject> treeList;
+    public List<GameObject> rockList;
 
     public bool hasTreesGen;
 
@@ -42,7 +43,7 @@ public class TerrainChunk {
         view = meshObject.AddComponent<NetworkView>();
         gen = GameObject.FindObjectOfType<TerrainGenerator>();
 
-        view.RPC("TreesGenerated", RPCMode.AllBuffered, hasTreesGen);
+        //view.RPC("TreesGenerated", RPCMode.AllBuffered, hasTreesGen);
     }
 
 	public TerrainChunk(Vector2 coord, HeightMapSettings heightMapSettings, MeshSettings meshSettings, LODInfo[] detailLevels, int colliderLODIndex, Transform parent, Transform viewer, Material material) {
@@ -55,6 +56,7 @@ public class TerrainChunk {
 		this.viewer = viewer;
 
         treeList = GameObject.FindObjectOfType<TerrainGenerator>().treeObjects;
+        rockList = GameObject.FindObjectOfType<TerrainGenerator>().rockObjects;
 
         sampleCentre = coord * meshSettings.meshWorldSize / meshSettings.meshScale;
 		Vector2 position = coord * meshSettings.meshWorldSize ;
@@ -167,26 +169,45 @@ public class TerrainChunk {
 				hasSetCollider = true;
 
                 if (hasTreesGen == false) {
-                    int treeNumber = Random.Range(5, 15);
+                    int treeNumber = Random.Range(20, 30);
                     Debug.Log("Trees Generated: " + treeNumber);
 
                     for (int i = 0; i < treeNumber; i++)
                     {
                         CreateTree();
-                        hasTreesGen = true;
 
-                        view.RPC("TreesGenerated", RPCMode.AllBuffered, hasTreesGen);
+
+                        hasTreesGen = true;
+                    }
+
+                    int rockNumberOne = Random.Range(10, 20);
+                    Debug.Log("Rocks Generated: " + rockNumberOne);
+
+                    for (int j = 0; j < rockNumberOne; j++)
+                    {
+                        CreateRockLayerOne();
+
+                    }
+                    int rockNumberTwo = Random.Range(1, 5);
+                    Debug.Log("Rocks Generated: " + rockNumberTwo);
+
+                    for (int j = 0; j < rockNumberTwo; j++)
+                    {
+                        CreateRockLayerTwo();
+
+                    }
+                    int rockNumberThree = Random.Range(20, 30);
+                    Debug.Log("Rocks Generated: " + rockNumberThree);
+
+                    for (int j = 0; j < rockNumberThree; j++)
+                    {
+                        CreateRockLayerThree();
+
                     }
                 }
             }
 		}
 	}
-
-    [RPC]
-    void TreesGenerated(bool receivedGen)
-    {
-        hasTreesGen = receivedGen;
-    }
 
     void CreateTree()
     {
@@ -196,6 +217,7 @@ public class TerrainChunk {
         RaycastHit hit;
         Ray ray = new Ray(new Vector3(treePosX, 100, treePosZ), Vector3.down);
 
+        int treeType = Random.Range(0, treeList.Count);
 
         if(meshCollider.Raycast(ray, out hit, 2.0f * 100))
         {
@@ -206,7 +228,7 @@ public class TerrainChunk {
         {
             Vector3 treePos = new Vector3(treePosX, hit.point.y + 7.5f, treePosZ);
             Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
-            GameObject curTree = Network.Instantiate(treeList[0], treePos, treeRot, 0) as GameObject;
+            GameObject curTree = Network.Instantiate(treeList[treeType], treePos, treeRot, 0) as GameObject;
             curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);
             curTree.transform.parent = meshObject.transform;
 
@@ -214,7 +236,86 @@ public class TerrainChunk {
         }
     }
 
-	public void SetVisible(bool visible) {
+    void CreateRockLayerOne()
+    {
+        float rockPosX = coord.x * 100 + Random.Range(-50, 50);
+        float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
+
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(rockPosX, 100, rockPosZ), Vector3.down);
+
+        int rockType = Random.Range(0, rockList.Count);
+
+        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        {
+            Debug.Log("hit Point" + hit.point);
+        }
+
+        if (hit.point.y > 0 && hit.point.y < 5)
+        {
+            Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
+            Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
+            GameObject curRock = Network.Instantiate(rockList[rockType], rockPos, rockRot, 0) as GameObject;
+            curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
+            curRock.transform.parent = meshObject.transform;
+
+            Debug.Log("Created Rock at " + rockPos);
+        }
+    }
+    void CreateRockLayerTwo()
+    {
+        float rockPosX = coord.x * 100 + Random.Range(-50, 50);
+        float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
+
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(rockPosX, 100, rockPosZ), Vector3.down);
+
+        int rockType = Random.Range(0, rockList.Count);
+
+        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        {
+            Debug.Log("hit Point" + hit.point);
+        }
+
+        if (hit.point.y > 5 && hit.point.y < 25)
+        {
+            Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
+            Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
+            GameObject curRock = Network.Instantiate(rockList[rockType], rockPos, rockRot, 0) as GameObject;
+            curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
+            curRock.transform.parent = meshObject.transform;
+
+            Debug.Log("Created Rock at " + rockPos);
+        }
+    }
+    void CreateRockLayerThree()
+    {
+        float rockPosX = coord.x * 100 + Random.Range(-50, 50);
+        float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
+
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(rockPosX, 100, rockPosZ), Vector3.down);
+
+        int rockType = Random.Range(0, rockList.Count);
+
+        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        {
+            Debug.Log("hit Point" + hit.point);
+        }
+
+        if (hit.point.y > 25)
+        {
+            Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
+            Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
+            GameObject curRock = Network.Instantiate(rockList[rockType], rockPos, rockRot, 0) as GameObject;
+            curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
+            curRock.transform.parent = meshObject.transform;
+
+            Debug.Log("Created Rock at " + rockPos);
+        }
+    }
+
+    public void SetVisible(bool visible) {
 		meshObject.SetActive (visible);
 	}
 
