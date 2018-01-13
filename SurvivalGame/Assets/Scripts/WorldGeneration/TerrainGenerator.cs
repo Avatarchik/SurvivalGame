@@ -7,8 +7,6 @@ public class TerrainGenerator : MonoBehaviour {
 	const float viewerMoveThresholdForChunkUpdate = 25f;
 	const float sqrViewerMoveThresholdForChunkUpdate = viewerMoveThresholdForChunkUpdate * viewerMoveThresholdForChunkUpdate;
 
-    public NetworkView view;
-
     bool hasStarted = true;
 
 	public int colliderLODIndex;
@@ -34,7 +32,8 @@ public class TerrainGenerator : MonoBehaviour {
     public List<GameObject> rockObjects;
 
 
-    void Start() {
+    void Start()
+    {
         if (!hasStarted)
         {
             textureSettings.ApplyToMaterial(mapMaterial);
@@ -48,6 +47,10 @@ public class TerrainGenerator : MonoBehaviour {
 
             Debug.Log("World Generated with seed: " + heightMapSettings.noiseSettings.seed);
         }
+        else
+        {
+            Debug.Log("Havent assigned viewer so world no spawn :(");
+        }
 	}
 
 	void Update()
@@ -59,7 +62,7 @@ public class TerrainGenerator : MonoBehaviour {
         }
         else
         {
-            viewer = GameObject.FindGameObjectWithTag("MyPlayer").transform;
+            viewer = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
 		viewerPosition = new Vector2 (viewer.position.x, viewer.position.z);
