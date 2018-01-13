@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class NetworkManager : MonoBehaviour {
 
+    public NetworkView view;
+
 	public GameObject clientPrefab;
 	public Transform spawn;
 
@@ -13,17 +15,35 @@ public class NetworkManager : MonoBehaviour {
 	private const string typeName = "RhysSamSurvival";
 	private string gameName = "RoomName";
     private int serverCapacity = 12;
+    public int serverSeed;
+    private int clientSeed;
 
 	private HostData[] hostList;
 
 	public bool showBrowser = false;
 	public bool createServer = false;
 
+    public HeightMapSettings heightMapSettings;
+
     private void StartServer()
 	{
 		Network.InitializeServer (serverCapacity, 25459, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (typeName, gameName);
+
+        /*if(serverSeed == 0)
+        {
+            serverSeed = Random.Range(1, int.MaxValue);
+            heightMapSettings.noiseSettings.seed = serverSeed;
+
+            view.RPC("SeedSync", RPCMode.AllBuffered, serverSeed);
+        }*/
 	}
+
+    /*[RPC]
+    void SeedSync(int receivedSeed)
+    {
+        heightMapSettings.noiseSettings.seed = receivedSeed;
+    }*/
 
 	void OnServerInitialized()
 	{
@@ -45,6 +65,7 @@ public class NetworkManager : MonoBehaviour {
 	private void JoinServer(HostData hostData)
 	{
 		Network.Connect (hostData);
+        //view.RPC("SeedSync", RPCMode.All, serverSeed);
 	}
 
 	void OnConnectedToServer()
@@ -90,6 +111,9 @@ public class NetworkManager : MonoBehaviour {
 
 				GUI.Label(new Rect(5, 25, 100, 30), "Lobby Name:");
 				gameName = GUI.TextField (new Rect (105, 25, 120, 30), gameName, 15);
+
+                GUI.Label(new Rect(5, 60, 100, 30), "World Seed (WIP):");
+                int.TryParse(GUI.TextField(new Rect(105, 60, 100, 30), serverSeed.ToString()), out serverSeed);
 
 				if (GUI.Button (new Rect (225, 465, 120, 30), "Create Server"))
 					StartServer ();
