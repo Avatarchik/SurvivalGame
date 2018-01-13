@@ -45,6 +45,8 @@ public class TerrainGenerator : MonoBehaviour {
             chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / meshWorldSize);
 
             UpdateVisibleChunks();
+
+            Debug.Log("World Generated with seed: " + heightMapSettings.noiseSettings.seed);
         }
 	}
 

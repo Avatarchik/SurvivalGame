@@ -25,25 +25,37 @@ public class NetworkManager : MonoBehaviour {
 
     public HeightMapSettings heightMapSettings;
 
+    private void Start()
+    {
+        serverSeed = heightMapSettings.noiseSettings.seed;
+    }
+
     private void StartServer()
 	{
 		Network.InitializeServer (serverCapacity, 25459, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (typeName, gameName);
 
-        /*if(serverSeed == 0)
+        heightMapSettings.noiseSettings.seed = serverSeed;
+
+        if(serverSeed == 0)
         {
             serverSeed = Random.Range(1, int.MaxValue);
             heightMapSettings.noiseSettings.seed = serverSeed;
 
-            view.RPC("SeedSync", RPCMode.AllBuffered, serverSeed);
-        }*/
+            view.RPC("SeedSync", RPCMode.Server, serverSeed);
+        }
+
+        if(serverCapacity == 0)
+        {
+            serverCapacity = 12;
+        }
 	}
 
-    /*[RPC]
+    [RPC]
     void SeedSync(int receivedSeed)
     {
         heightMapSettings.noiseSettings.seed = receivedSeed;
-    }*/
+    }
 
 	void OnServerInitialized()
 	{
@@ -56,6 +68,11 @@ public class NetworkManager : MonoBehaviour {
 		MasterServer.RequestHostList (typeName);
 	}
 
+    private void OnPlayerConnected(NetworkPlayer player)
+    {
+        view.RPC("SyncSeed", RPCMode.OthersBuffered, serverSeed);
+    }
+
     void OnMasterServerEvent(MasterServerEvent msEvent)
 	{
 		if (msEvent == MasterServerEvent.HostListReceived)
@@ -65,7 +82,6 @@ public class NetworkManager : MonoBehaviour {
 	private void JoinServer(HostData hostData)
 	{
 		Network.Connect (hostData);
-        //view.RPC("SeedSync", RPCMode.All, serverSeed);
 	}
 
 	void OnConnectedToServer()
@@ -112,10 +128,13 @@ public class NetworkManager : MonoBehaviour {
 				GUI.Label(new Rect(5, 25, 100, 30), "Lobby Name:");
 				gameName = GUI.TextField (new Rect (105, 25, 120, 30), gameName, 15);
 
-                GUI.Label(new Rect(5, 60, 100, 30), "World Seed (WIP):");
+                GUI.Label(new Rect(5, 60, 100, 30), "World Seed:");
                 int.TryParse(GUI.TextField(new Rect(105, 60, 100, 30), serverSeed.ToString()), out serverSeed);
 
-				if (GUI.Button (new Rect (225, 465, 120, 30), "Create Server"))
+                GUI.Label(new Rect(5, 95, 100, 30), "Server Capacity:");
+                int.TryParse(GUI.TextField(new Rect(105, 95, 100, 30), serverCapacity.ToString()), out serverCapacity);
+
+                if (GUI.Button (new Rect (225, 465, 120, 30), "Create Server"))
 					StartServer ();
 				
 				GUI.EndGroup();

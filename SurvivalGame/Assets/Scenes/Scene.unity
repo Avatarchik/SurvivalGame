@@ -444,6 +444,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: ac00723e610cb3041a14088ef40f078f, type: 3}
   - {fileID: 100000, guid: 0e0d9c993af9d7e4184ad56cb8399d78, type: 3}
   - {fileID: 100000, guid: 313792eafe55a4e4bad1a03fd228d53a, type: 3}
+  - {fileID: 100000, guid: ba547fbc108ab2d4fb62c2b95b90dc7b, type: 3}
 --- !u!114 &1008436977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +489,7 @@ MonoBehaviour:
     type: 2}
   spawn: {fileID: 1151350329}
   playerData: []
+  serverSeed: 0
   showBrowser: 0
   createServer: 0
   heightMapSettings: {fileID: 11400000, guid: dc56cfa40ebb6824da4bf42fd3406a95, type: 2}

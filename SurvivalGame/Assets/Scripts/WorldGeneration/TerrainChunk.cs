@@ -170,7 +170,7 @@ public class TerrainChunk {
 
                 if (hasTreesGen == false) {
                     int treeNumber = Random.Range(20, 30);
-                    Debug.Log("Trees Generated: " + treeNumber);
+                    //Debug.Log("Trees Generated: " + treeNumber);
 
                     for (int i = 0; i < treeNumber; i++)
                     {
@@ -181,28 +181,25 @@ public class TerrainChunk {
                     }
 
                     int rockNumberOne = Random.Range(10, 20);
-                    Debug.Log("Rocks Generated: " + rockNumberOne);
+                    //Debug.Log("Rocks Generated: " + rockNumberOne);
 
                     for (int j = 0; j < rockNumberOne; j++)
                     {
-                        CreateRockLayerOne();
-
+                        CreateRockLayer(0, 5);
                     }
                     int rockNumberTwo = Random.Range(1, 5);
-                    Debug.Log("Rocks Generated: " + rockNumberTwo);
+                    //Debug.Log("Rocks Generated: " + rockNumberTwo);
 
                     for (int j = 0; j < rockNumberTwo; j++)
                     {
-                        CreateRockLayerTwo();
-
+                        CreateRockLayer(5, 20);
                     }
                     int rockNumberThree = Random.Range(20, 30);
-                    Debug.Log("Rocks Generated: " + rockNumberThree);
+                    //Debug.Log("Rocks Generated: " + rockNumberThree);
 
                     for (int j = 0; j < rockNumberThree; j++)
                     {
-                        CreateRockLayerThree();
-
+                        CreateRockLayer(25, 100);
                     }
                 }
             }
@@ -221,7 +218,7 @@ public class TerrainChunk {
 
         if(meshCollider.Raycast(ray, out hit, 2.0f * 100))
         {
-            Debug.Log("hit Point" + hit.point);
+            //Debug.Log("hit Point" + hit.point);
         }
 
         if (hit.point.y > 5 && hit.point.y < 25)
@@ -232,11 +229,11 @@ public class TerrainChunk {
             curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);
             curTree.transform.parent = meshObject.transform;
 
-            Debug.Log("Created Tree at " + treePos);
+            //Debug.Log("Created Tree at " + treePos);
         }
     }
 
-    void CreateRockLayerOne()
+    void CreateRockLayer(float minHeight, float maxHeight)
     {
         float rockPosX = coord.x * 100 + Random.Range(-50, 50);
         float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
@@ -248,10 +245,10 @@ public class TerrainChunk {
 
         if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
         {
-            Debug.Log("hit Point" + hit.point);
+            //Debug.Log("hit Point" + hit.point);
         }
 
-        if (hit.point.y > 0 && hit.point.y < 5)
+        if (hit.point.y > minHeight && hit.point.y < maxHeight)
         {
             Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
             Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
@@ -259,62 +256,10 @@ public class TerrainChunk {
             curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
             curRock.transform.parent = meshObject.transform;
 
-            Debug.Log("Created Rock at " + rockPos);
+            //Debug.Log("Created Rock at " + rockPos);
         }
     }
-    void CreateRockLayerTwo()
-    {
-        float rockPosX = coord.x * 100 + Random.Range(-50, 50);
-        float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
-
-        RaycastHit hit;
-        Ray ray = new Ray(new Vector3(rockPosX, 100, rockPosZ), Vector3.down);
-
-        int rockType = Random.Range(0, rockList.Count);
-
-        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
-        {
-            Debug.Log("hit Point" + hit.point);
-        }
-
-        if (hit.point.y > 5 && hit.point.y < 25)
-        {
-            Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
-            Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
-            GameObject curRock = Network.Instantiate(rockList[rockType], rockPos, rockRot, 0) as GameObject;
-            curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
-            curRock.transform.parent = meshObject.transform;
-
-            Debug.Log("Created Rock at " + rockPos);
-        }
-    }
-    void CreateRockLayerThree()
-    {
-        float rockPosX = coord.x * 100 + Random.Range(-50, 50);
-        float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
-
-        RaycastHit hit;
-        Ray ray = new Ray(new Vector3(rockPosX, 100, rockPosZ), Vector3.down);
-
-        int rockType = Random.Range(0, rockList.Count);
-
-        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
-        {
-            Debug.Log("hit Point" + hit.point);
-        }
-
-        if (hit.point.y > 25)
-        {
-            Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
-            Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
-            GameObject curRock = Network.Instantiate(rockList[rockType], rockPos, rockRot, 0) as GameObject;
-            curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
-            curRock.transform.parent = meshObject.transform;
-
-            Debug.Log("Created Rock at " + rockPos);
-        }
-    }
-
+ 
     public void SetVisible(bool visible) {
 		meshObject.SetActive (visible);
 	}
