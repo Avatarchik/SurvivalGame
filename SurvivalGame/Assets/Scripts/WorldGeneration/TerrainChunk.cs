@@ -5,6 +5,8 @@ public class TerrainChunk {
 
     public List<GameObject> treeList;
 
+    public bool hasTreesGen;
+
 	const float colliderGenerationDistanceThreshold = 5;
 	public event System.Action<TerrainChunk, bool> onVisibilityChanged;
 	public Vector2 coord;
@@ -162,24 +164,51 @@ public class TerrainChunk {
 				meshCollider.sharedMesh = lodMeshes [colliderLODIndex].mesh;
 				hasSetCollider = true;
 
-                /*GameObject treePlacer;
-                Vector3 treePos = new Vector3(coord.x * 100, 25, coord.y * 100);
-                treePlacer = Instantiate(gen.treePlacer, treePos, Quaternion.identity,0) as GameObject;
-                treePlacer.transform.parent = meshObject.transform;
-                PropPlacer treePl = treePlacer.GetComponent<PropPlacer>();
-                treePl.coord = coord;*/
+                if (hasTreesGen == false) {
+                    int treeNumber = Random.Range(5, 15);
+                    Debug.Log("Trees Generated: " + treeNumber);
+
+                    for (int i = 0; i < treeNumber; i++)
+                    {
+                        CreateTree();
+                        hasTreesGen = true;
+                        view.RPC("TreesGenerated", RPCMode.AllBuffered, hasTreesGen);
+                    }
+                }
             }
 		}
 	}
 
     [RPC]
+    void TreesGenerated(bool receivedGen)
+    {
+        hasTreesGen = receivedGen;
+    }
+
     void CreateTree()
     {
-        Vector3 treePos = new Vector3(coord.x * 100 + Random.Range(-50, 50), 25, coord.y * 100 + Random.Range(-50, 50));
-        Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
-        GameObject curTree = Network.Instantiate(treeList[0], treePos, treeRot, 0) as GameObject;
-        curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);
-        curTree.transform.parent = meshObject.transform;
+        float treePosX = coord.x * 100 + Random.Range(-50, 50);
+        float treePosZ = coord.y * 100 + Random.Range(-50, 50);
+
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(treePosX, 100, treePosZ), Vector3.down);
+
+
+        if(meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        {
+            Debug.Log("hit Point" + hit.point);
+        }
+
+        if (hit.point.y > 5 && hit.point.y < 25)
+        {
+            Vector3 treePos = new Vector3(treePosX, hit.point.y + 7.5f, treePosZ);
+            Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
+            GameObject curTree = Network.Instantiate(treeList[0], treePos, treeRot, 0) as GameObject;
+            curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);
+            curTree.transform.parent = meshObject.transform;
+
+            Debug.Log("Created Tree at " + treePos);
+        }
     }
 
 	public void SetVisible(bool visible) {
