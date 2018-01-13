@@ -450,6 +450,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 58c3e69a4e8bbfc4886c3432e82f89a9, type: 3}
   - {fileID: 100000, guid: e082fed258077854298d28f2ac822e5a, type: 3}
   - {fileID: 100000, guid: 7d59b7e0679c7254089f3da3a29e93e1, type: 3}
+  grassObjects:
+  - {fileID: 100000, guid: df65bd18795f32e48b898e0ab628f3f5, type: 3}
 --- !u!114 &1008436977
 MonoBehaviour:
   m_ObjectHideFlags: 0

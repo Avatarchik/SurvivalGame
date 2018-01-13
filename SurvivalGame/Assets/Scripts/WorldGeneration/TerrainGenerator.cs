@@ -30,7 +30,7 @@ public class TerrainGenerator : MonoBehaviour {
 
     public List<GameObject> treeObjects;
     public List<GameObject> rockObjects;
-
+    public List<GameObject> grassObjects;
 
     void Start()
     {
@@ -46,10 +46,6 @@ public class TerrainGenerator : MonoBehaviour {
             UpdateVisibleChunks();
 
             Debug.Log("World Generated with seed: " + heightMapSettings.noiseSettings.seed);
-        }
-        else
-        {
-            Debug.Log("Havent assigned viewer so world no spawn :(");
         }
 	}
 

@@ -6,6 +6,7 @@ public class TerrainChunk : MonoBehaviour
 
     public List<GameObject> treeList;
     public List<GameObject> rockList;
+    public List<GameObject> grassList;
 
     public bool hasTreesGen;
 
@@ -196,6 +197,12 @@ public class TerrainChunk : MonoBehaviour
                     {
                         CreateRockLayer(25, 100);
                     }
+
+                    int grassNumber = Random.Range(20, 30);
+                    for (int j = 0; j < grassNumber; j++)
+                    {
+                        CreateGrassLayer(5, 20);
+                    }
                 }
             }
 		}
@@ -248,7 +255,31 @@ public class TerrainChunk : MonoBehaviour
             curRock.transform.parent = meshObject.transform;
         }
     }
- 
+
+    void CreateGrassLayer(float minHeight, float maxHeight)
+    {
+        float grassPosX = coord.x * 100 + Random.Range(-50, 50);
+        float grassPosZ = coord.y * 100 + Random.Range(-50, 50);
+
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(grassPosX, 100, grassPosZ), Vector3.down);
+
+        int grassType = Random.Range(0, rockList.Count);
+
+        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        {
+        }
+
+        if (hit.point.y > minHeight && hit.point.y < maxHeight)
+        {
+            Vector3 grassPos = new Vector3(grassPosX, hit.point.y, grassPosZ);
+            Quaternion grassRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
+            GameObject curGrass = Instantiate(grassList[grassType], grassPos, grassRot) as GameObject;
+            curGrass.transform.eulerAngles = new Vector3(grassRot.x, grassRot.y, grassRot.z);
+            curGrass.transform.parent = meshObject.transform;
+        }
+    }
+
     public void SetVisible(bool visible) {
 		meshObject.SetActive (visible);
 	}
