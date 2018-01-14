@@ -4,6 +4,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    public SingleplayerWorldCreator worldCreator;
+
     public FirstPersonController controller;
     public PlayerManager manager;
     public Rigidbody rigidbody;
@@ -15,6 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        worldCreator = GameObject.FindGameObjectWithTag("GameController").GetComponent<SingleplayerWorldCreator>();
     }
 
     void Update()
@@ -67,12 +71,11 @@ public class PlayerManager : MonoBehaviour
 
             GUI.Box(new Rect(0, 0, 250, 500), "Paused");
 
-            /*if (GUI.Button(new Rect(5, 30, 240, 30), "Disconnect"))
+            if (GUI.Button(new Rect(5, 30, 240, 30), "Quit"))
             {
-                //Network.Destroy (view.viewID);
-                Network.Disconnect();
-                MasterServer.UnregisterHost();
-            }*/
+                worldCreator.inGame = false;
+                Destroy(gameObject);
+            }
 
             GUI.EndGroup();
         }

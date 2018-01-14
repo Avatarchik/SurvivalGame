@@ -187,22 +187,23 @@ public class TerrainChunk : MonoBehaviour
                     }
 
                     int rockNumberTwo = Random.Range(1, 5);
-                    for (int j = 0; j < rockNumberTwo; j++)
+                    for (int e = 0; e < rockNumberTwo; e++)
                     {
                         CreateRockLayer(5, 20);
                     }
 
                     int rockNumberThree = Random.Range(20, 30);
-                    for (int j = 0; j < rockNumberThree; j++)
+                    for (int r = 0; r < rockNumberThree; r++)
                     {
                         CreateRockLayer(25, 100);
                     }
 
-                    int grassNumber = Random.Range(20, 30);
-                    for (int j = 0; j < grassNumber; j++)
+                    /*int grassNumber = Random.Range(20, 30);
+                    for (int g = 0; g < grassNumber; g++)
                     {
-                        CreateGrassLayer(5, 20);
-                    }
+                        CreateGrassLayer(5, 25);
+                        Debug.Log("Created Grass");
+                    }*/
                 }
             }
 		}
@@ -273,10 +274,12 @@ public class TerrainChunk : MonoBehaviour
         if (hit.point.y > minHeight && hit.point.y < maxHeight)
         {
             Vector3 grassPos = new Vector3(grassPosX, hit.point.y, grassPosZ);
-            Quaternion grassRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
+            Quaternion grassRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
             GameObject curGrass = Instantiate(grassList[grassType], grassPos, grassRot) as GameObject;
             curGrass.transform.eulerAngles = new Vector3(grassRot.x, grassRot.y, grassRot.z);
             curGrass.transform.parent = meshObject.transform;
+
+            Debug.Log("Generated grass at: " + grassPos);
         }
     }
 

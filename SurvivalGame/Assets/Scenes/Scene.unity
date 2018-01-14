@@ -378,7 +378,6 @@ GameObject:
   - component: {fileID: 1008436975}
   - component: {fileID: 1008436976}
   - component: {fileID: 1008436977}
-  - component: {fileID: 1008436973}
   m_Layer: 8
   m_Name: Map Generator
   m_TagString: TerrainGen
@@ -386,18 +385,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!148 &1008436973
-NetworkView:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1008436972}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 1008436975}
-  m_ViewID:
-    m_ID: 1
-    m_Type: 1
 --- !u!4 &1008436975
 Transform:
   m_ObjectHideFlags: 0
@@ -474,7 +461,7 @@ GameObject:
   - component: {fileID: 1151350328}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -494,6 +481,7 @@ MonoBehaviour:
     type: 2}
   spawn: {fileID: 1151350329}
   seed: 0
+  inGame: 0
   worldLoader: 0
   createWorld: 0
   heightMapSettings: {fileID: 11400000, guid: dc56cfa40ebb6824da4bf42fd3406a95, type: 2}

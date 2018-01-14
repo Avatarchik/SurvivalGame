@@ -10,15 +10,34 @@ public class SingleplayerWorldCreator : MonoBehaviour
     private string worldName = "World";
     public int seed;
 
-    bool inGame = false;
+    public bool inGame = false;
     public bool worldLoader = false;
     public bool createWorld = false;
 
     public HeightMapSettings heightMapSettings;
 
+    const float normalScale = 450;
+    const int normalOctaves = 15;
+    const float normalPersistance = 0.45f;
+    const float normalLacunarity = 2.1f;
+    const float normalHeightMulti = 150;
+
+    float scale = 450;
+    int octaves = 15;
+    float persistance = 0.45f;
+    float lacunarity = 2.1f;
+    float heightMulti = 150;
+
+
     private void Start()
     {
-        seed = heightMapSettings.noiseSettings.seed;
+        seed = 0;
+
+        heightMapSettings.noiseSettings.scale = normalScale;
+        heightMapSettings.noiseSettings.octaves = normalOctaves;
+        heightMapSettings.noiseSettings.persistance = normalPersistance;
+        heightMapSettings.noiseSettings.lacunarity = normalLacunarity;
+        heightMapSettings.heightMultiplier = normalHeightMulti;
     }
 
     private void CreateWorld()
@@ -30,9 +49,17 @@ public class SingleplayerWorldCreator : MonoBehaviour
             seed = Random.Range(1, int.MaxValue);
             heightMapSettings.noiseSettings.seed = seed;
         }
+
+        heightMapSettings.noiseSettings.scale = scale;
+        heightMapSettings.noiseSettings.octaves = octaves;
+        heightMapSettings.noiseSettings.persistance = persistance;
+        heightMapSettings.noiseSettings.lacunarity = lacunarity;
+        heightMapSettings.heightMultiplier = heightMulti;
+
         SpawnPlayer();
 
         inGame = true;
+        createWorld = false;
     }
 
     public void SpawnPlayer()
@@ -69,6 +96,25 @@ public class SingleplayerWorldCreator : MonoBehaviour
 
                 GUI.Label(new Rect(5, 60, 100, 30), "World Seed:");
                 int.TryParse(GUI.TextField(new Rect(105, 60, 100, 30), seed.ToString()), out seed);
+
+
+                GUI.Label(new Rect(105, 95, 100, 30), "Risky Settings");
+
+
+                GUI.Label(new Rect(5, 130, 100, 50), "Noise Scale: \n" + scale);
+                scale = GUI.HorizontalSlider(new Rect(105, 130, 100, 30), scale, 450.0f, 5000.0f);
+
+                GUI.Label(new Rect(5, 165, 100, 30), "Octaves:");
+                int.TryParse(GUI.TextField(new Rect(105, 165, 100, 30), octaves.ToString()), out octaves);
+
+                GUI.Label(new Rect(5, 200, 100, 50), "Persistance: \n" + persistance);
+                persistance = GUI.HorizontalSlider(new Rect(105, 200, 100, 30), persistance, 0.1f, 1.0f);
+
+                GUI.Label(new Rect(5, 255, 100, 50), "Lacunarity: \n" + lacunarity);
+                lacunarity = GUI.HorizontalSlider(new Rect(105, 255, 100, 30), lacunarity, 1.0f, 4.0f);
+
+                GUI.Label(new Rect(5, 310, 100, 50), "Height Scale: \n" + heightMulti);
+                heightMulti = GUI.HorizontalSlider(new Rect(105,  310, 100, 30), heightMulti, 450.0f, 5000.0f);
 
                 if (GUI.Button(new Rect(225, 465, 120, 30), "Create World"))
                     CreateWorld();

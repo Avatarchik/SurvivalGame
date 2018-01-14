@@ -44,8 +44,6 @@ public class TerrainGenerator : MonoBehaviour {
             chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / meshWorldSize);
 
             UpdateVisibleChunks();
-
-            Debug.Log("World Generated with seed: " + heightMapSettings.noiseSettings.seed);
         }
 	}
 
@@ -56,7 +54,8 @@ public class TerrainGenerator : MonoBehaviour {
             hasStarted = false;
             Start();
         }
-        else
+
+        if(viewer == null)
         {
             viewer = GameObject.FindGameObjectWithTag("Player").transform;
         }
