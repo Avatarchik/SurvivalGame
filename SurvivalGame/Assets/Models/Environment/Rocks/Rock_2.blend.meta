@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7a907f9d42c230a4e811133a56965fef
-timeCreated: 1515868515
+guid: d873f32a85f2d1b438674b35a429db32
+timeCreated: 1515868494
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -11,9 +11,15 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cube
+    6400000: //RootNode
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__RockUV_png
+    second: {fileID: 2100000, guid: 8231491ba5b900e469fb04fdc798f362, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -45,7 +51,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

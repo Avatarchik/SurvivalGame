@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class TerrainChunk {
+public class TerrainChunk : MonoBehaviour
+{
 
     public List<GameObject> treeList;
     public List<GameObject> rockList;
+    public List<GameObject> grassList;
 
     public bool hasTreesGen;
 
@@ -168,39 +170,40 @@ public class TerrainChunk {
 				meshCollider.sharedMesh = lodMeshes [colliderLODIndex].mesh;
 				hasSetCollider = true;
 
-                if (hasTreesGen == false) {
-                    int treeNumber = Random.Range(20, 30);
-                    //Debug.Log("Trees Generated: " + treeNumber);
+                if (hasTreesGen == false)
+                {
 
+                    int treeNumber = Random.Range(20, 30);
                     for (int i = 0; i < treeNumber; i++)
                     {
                         CreateTree();
-
-
                         hasTreesGen = true;
                     }
 
                     int rockNumberOne = Random.Range(10, 20);
-                    //Debug.Log("Rocks Generated: " + rockNumberOne);
-
                     for (int j = 0; j < rockNumberOne; j++)
                     {
                         CreateRockLayer(0, 5);
                     }
-                    int rockNumberTwo = Random.Range(1, 5);
-                    //Debug.Log("Rocks Generated: " + rockNumberTwo);
 
-                    for (int j = 0; j < rockNumberTwo; j++)
+                    int rockNumberTwo = Random.Range(1, 5);
+                    for (int e = 0; e < rockNumberTwo; e++)
                     {
                         CreateRockLayer(5, 20);
                     }
-                    int rockNumberThree = Random.Range(20, 30);
-                    //Debug.Log("Rocks Generated: " + rockNumberThree);
 
-                    for (int j = 0; j < rockNumberThree; j++)
+                    int rockNumberThree = Random.Range(20, 30);
+                    for (int r = 0; r < rockNumberThree; r++)
                     {
                         CreateRockLayer(25, 100);
                     }
+
+                    /*int grassNumber = Random.Range(20, 30);
+                    for (int g = 0; g < grassNumber; g++)
+                    {
+                        CreateGrassLayer(5, 25);
+                        Debug.Log("Created Grass");
+                    }*/
                 }
             }
 		}
@@ -218,18 +221,15 @@ public class TerrainChunk {
 
         if(meshCollider.Raycast(ray, out hit, 2.0f * 100))
         {
-            //Debug.Log("hit Point" + hit.point);
         }
 
         if (hit.point.y > 5 && hit.point.y < 25)
         {
             Vector3 treePos = new Vector3(treePosX, hit.point.y + 7.5f, treePosZ);
             Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
-            GameObject curTree = Network.Instantiate(treeList[treeType], treePos, treeRot, 0) as GameObject;
+            GameObject curTree = Instantiate(treeList[treeType], treePos, treeRot) as GameObject;
             curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);
             curTree.transform.parent = meshObject.transform;
-
-            //Debug.Log("Created Tree at " + treePos);
         }
     }
 
@@ -245,21 +245,44 @@ public class TerrainChunk {
 
         if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
         {
-            //Debug.Log("hit Point" + hit.point);
         }
 
         if (hit.point.y > minHeight && hit.point.y < maxHeight)
         {
             Vector3 rockPos = new Vector3(rockPosX, hit.point.y, rockPosZ);
             Quaternion rockRot = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), 0);
-            GameObject curRock = Network.Instantiate(rockList[rockType], rockPos, rockRot, 0) as GameObject;
+            GameObject curRock = Instantiate(rockList[rockType], rockPos, rockRot) as GameObject;
             curRock.transform.eulerAngles = new Vector3(rockRot.x, rockRot.y, rockRot.z);
             curRock.transform.parent = meshObject.transform;
-
-            //Debug.Log("Created Rock at " + rockPos);
         }
     }
- 
+
+    void CreateGrassLayer(float minHeight, float maxHeight)
+    {
+        float grassPosX = coord.x * 100 + Random.Range(-50, 50);
+        float grassPosZ = coord.y * 100 + Random.Range(-50, 50);
+
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(grassPosX, 100, grassPosZ), Vector3.down);
+
+        int grassType = Random.Range(0, rockList.Count);
+
+        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        {
+        }
+
+        if (hit.point.y > minHeight && hit.point.y < maxHeight)
+        {
+            Vector3 grassPos = new Vector3(grassPosX, hit.point.y, grassPosZ);
+            Quaternion grassRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
+            GameObject curGrass = Instantiate(grassList[grassType], grassPos, grassRot) as GameObject;
+            curGrass.transform.eulerAngles = new Vector3(grassRot.x, grassRot.y, grassRot.z);
+            curGrass.transform.parent = meshObject.transform;
+
+            Debug.Log("Generated grass at: " + grassPos);
+        }
+    }
+
     public void SetVisible(bool visible) {
 		meshObject.SetActive (visible);
 	}

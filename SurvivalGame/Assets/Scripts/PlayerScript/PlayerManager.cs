@@ -5,16 +5,12 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerManager : MonoBehaviour
 {
 
-    public NetworkView view;
-    public int ID;
+    public SingleplayerWorldCreator worldCreator;
+
     public FirstPersonController controller;
     public PlayerManager manager;
     public Rigidbody rigidbody;
     public GameObject cam;
-    public GameObject model;
-
-    private Vector3 lastPosition;
-    private Quaternion lastRotation;
 
     bool pauseMenu = false;
 
@@ -22,11 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        if (view.isMine)
-        {
-            transform.gameObject.tag = "MyPlayer";
-            gameObject.layer = 8;
-        }
+        worldCreator = GameObject.FindGameObjectWithTag("GameController").GetComponent<SingleplayerWorldCreator>();
     }
 
     void Update()
@@ -52,58 +44,11 @@ public class PlayerManager : MonoBehaviour
         {
             pauseMenu = !pauseMenu;
         }
-
-        if (view.isMine)
-        {
-            controller.enabled = true;
-            cam.SetActive(true);
-            manager.enabled = true;
-            model.SetActive (false);
-			/*model2.SetActive (false);
-			model3.SetActive (false);
-			thirdPersonGun.SetActive (false);*/
-        }
-        else
-        {
-            controller.enabled = false;
-            cam.SetActive(false);
-            manager.enabled = false;
-            model.SetActive (true);
-			/*model2.SetActive (true);
-			model3.SetActive (true);
-			thirdPersonGun.SetActive (true);*/
-        }
-
-        if (Vector3.Distance(transform.position, lastPosition) >= 0.1)
-        {
-            lastPosition = transform.position;
-            view.RPC("UpdateMovement", RPCMode.OthersBuffered, transform.position, transform.rotation);
-        }
-
-        if (Quaternion.Angle(transform.rotation, lastRotation) >= 1)
-        {
-            lastRotation = transform.rotation;
-            view.RPC("UpdateMovement", RPCMode.OthersBuffered, transform.position, transform.rotation);
-        }
-    }
-
-    [RPC]
-    void UpdateMovement(Vector3 newPosition, Quaternion newRotation)
-    {
-        transform.position = newPosition;
-        transform.rotation = newRotation;
-    }
-
-    [RPC]
-    void UpdateServerHealth(int newHealth)
-    {
-        health = newHealth;
     }
 
     public void UpdateHealth(int change)
     {
         health += change;
-        view.RPC("UpdateServerHealth", RPCMode.All, health);
     }
 
     void OnDisconnectedFromServer()
@@ -126,12 +71,11 @@ public class PlayerManager : MonoBehaviour
 
             GUI.Box(new Rect(0, 0, 250, 500), "Paused");
 
-            /*if (GUI.Button(new Rect(5, 30, 240, 30), "Disconnect"))
+            if (GUI.Button(new Rect(5, 30, 240, 30), "Quit"))
             {
-                //Network.Destroy (view.viewID);
-                Network.Disconnect();
-                MasterServer.UnregisterHost();
-            }*/
+                worldCreator.inGame = false;
+                Destroy(gameObject);
+            }
 
             GUI.EndGroup();
         }
