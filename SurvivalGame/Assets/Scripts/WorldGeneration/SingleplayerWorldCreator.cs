@@ -114,7 +114,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
                 lacunarity = GUI.HorizontalSlider(new Rect(105, 255, 100, 30), lacunarity, 1.0f, 4.0f);
 
                 GUI.Label(new Rect(5, 310, 100, 50), "Height Scale: \n" + heightMulti);
-                heightMulti = GUI.HorizontalSlider(new Rect(105,  310, 100, 30), heightMulti, 450.0f, 5000.0f);
+                heightMulti = GUI.HorizontalSlider(new Rect(105,  310, 100, 30), heightMulti, 50.0f, 1000.0f);
 
                 if (GUI.Button(new Rect(225, 465, 120, 30), "Create World"))
                     CreateWorld();
