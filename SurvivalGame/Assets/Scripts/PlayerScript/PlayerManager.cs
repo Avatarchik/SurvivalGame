@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     public Rigidbody rigidbody;
     public GameObject cam;
 
+    public Inventory inv;
+
     bool pauseMenu = false;
 
     public int health, maxHealth;
@@ -25,17 +27,30 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Click!");
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.forward, out hit))
+
+            if (Physics.Raycast(ray, out hit, 10f))
             {
+                Debug.DrawRay(transform.position, Vector3.forward, Color.red, 3.0f);
                 Debug.Log("Ray hitting something");
+
                 if (hit.transform.gameObject.tag == "Terrain")
                 {
                     Debug.Log("Player Hit Terrain");
                 }
-                else if (hit.transform.gameObject.tag != "Terrain")
+                else if (hit.transform.gameObject.tag == "SmallRock")
                 {
-                    Debug.Log("hit something that wasnt terrain, i hit: " + hit.transform.gameObject.tag);
+                    Debug.Log("Hit Small Rock");
+                    int amount = Random.Range(1, 10);
+                    inv.AddItem(1, amount);
+                    Destroy(hit.transform.gameObject);
+                }
+                else
+                {
+                    Debug.Log("hit something that wasnt important, i hit: " + hit.transform.gameObject.tag);
                 }
             }
         }
@@ -51,11 +66,6 @@ public class PlayerManager : MonoBehaviour
         health += change;
     }
 
-    void OnDisconnectedFromServer()
-    {
-        Network.Destroy(gameObject);
-    }
-
     void OnGUI()
     {
         GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "");
@@ -63,9 +73,9 @@ public class PlayerManager : MonoBehaviour
 
         if (pauseMenu)
         {
-            controller.enabled = false;
+            /*controller.enabled = false;
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Cursor.visible = true;*/
 
             GUI.BeginGroup(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 250, 250, 500), "");
 
@@ -81,9 +91,9 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            controller.enabled = true;
+            /*controller.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Cursor.visible = false;*/
         }
     }
 }

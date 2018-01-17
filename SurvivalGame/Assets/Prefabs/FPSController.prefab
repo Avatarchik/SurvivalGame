@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114038630759312298}
   - component: {fileID: 114392946113267796}
   - component: {fileID: 114671082605374852}
+  - component: {fileID: 114085600364836870}
+  - component: {fileID: 114463072869912090}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -45,6 +47,8 @@ GameObject:
   - component: {fileID: 54115308039540774}
   - component: {fileID: 82385410788964966}
   - component: {fileID: 114070657521796422}
+  - component: {fileID: 114115012786108760}
+  - component: {fileID: 114453582169699500}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Player
@@ -59,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416140639532186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25893.938, y: 28378.6, z: 9140.89}
+  m_LocalPosition: {x: -2554.3613, y: 3006.5024, z: -288.73196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4644434409974342}
@@ -236,17 +240,273 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416140639532186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3807d05fedaa8d046b6598f9118f3c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldCreator: {fileID: 0}
   controller: {fileID: 114765393685492446}
   manager: {fileID: 114070657521796422}
   rigidbody: {fileID: 54115308039540774}
   cam: {fileID: 1245436854120946}
+  inv: {fileID: 114115012786108760}
   health: 100
   maxHealth: 100
+--- !u!114 &114085600364836870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1245436854120946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646b5bc27a658f447b1d929fd5ffbd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 1
+  showGeneratedNormals: 0
+  offsetScale: 0.2
+  blurRadius: 18
+  edgeThresholdMin: 0.05
+  edgeThreshold: 0.2
+  edgeSharpness: 4
+  dlaaSharp: 0
+  ssaaShader: {fileID: 4800000, guid: b3728d1488b02490cbd196c7941bf1f8, type: 3}
+  dlaaShader: {fileID: 4800000, guid: 017ca72b9e8a749058d13ebd527e98fa, type: 3}
+  nfaaShader: {fileID: 4800000, guid: ce0cb2621f6d84e21a87414e471a3cce, type: 3}
+  shaderFXAAPreset2: {fileID: 4800000, guid: 6f1418cffd12146f2a83be795f6fa5a7, type: 3}
+  shaderFXAAPreset3: {fileID: 4800000, guid: c182fa94a5a0a4c02870641efcd38cd5, type: 3}
+  shaderFXAAII: {fileID: 4800000, guid: cd5b323dcc592457790ff18b528f5e67, type: 3}
+  shaderFXAAIII: {fileID: 4800000, guid: c547503fff0e8482ea5793727057041c, type: 3}
+--- !u!114 &114115012786108760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416140639532186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4512b5196a9b974dab3cb36e32bfa95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: {fileID: 11400000, guid: ca5133cfbbe35124b968d4aaa35de3e3, type: 2}
+  isOpen: 0
+  controller: {fileID: 114765393685492446}
+  database: {fileID: 0}
+  manager: {fileID: 114070657521796422}
+  items:
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  hotbarItems:
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      block: 0
+      icon: {fileID: 0}
+    stack: 0
 --- !u!114 &114392946113267796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,6 +527,42 @@ MonoBehaviour:
   edgesOnly: 0
   edgesOnlyBgColor: {r: 1, g: 1, b: 1, a: 1}
   edgeDetectShader: {fileID: 4800000, guid: 0d1644bdf064147baa97f235fc5b4903, type: 3}
+--- !u!114 &114453582169699500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416140639532186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89081b6dfa8e954d9593af864a10f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: {fileID: 11400000, guid: ca5133cfbbe35124b968d4aaa35de3e3, type: 2}
+  controller: {fileID: 114765393685492446}
+  manager: {fileID: 114070657521796422}
+  data: {fileID: 0}
+  inv: {fileID: 114115012786108760}
+  curCrafting: 0
+--- !u!114 &114463072869912090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1245436854120946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3807d05fedaa8d046b6598f9118f3c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldCreator: {fileID: 0}
+  controller: {fileID: 114765393685492446}
+  manager: {fileID: 114463072869912090}
+  rigidbody: {fileID: 54115308039540774}
+  cam: {fileID: 1245436854120946}
+  inv: {fileID: 114115012786108760}
+  health: 100
+  maxHealth: 100
 --- !u!114 &114671082605374852
 MonoBehaviour:
   m_ObjectHideFlags: 1
