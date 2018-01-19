@@ -225,7 +225,7 @@ public class TerrainChunk : MonoBehaviour
 
         if (hit.point.y > 5 && hit.point.y < 25)
         {
-            Vector3 treePos = new Vector3(treePosX, hit.point.y + 7.5f, treePosZ);
+            Vector3 treePos = new Vector3(treePosX, hit.point.y + 8.75f, treePosZ);
             Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
             GameObject curTree = Instantiate(treeList[treeType], treePos, treeRot) as GameObject;
             curTree.transform.eulerAngles = new Vector3(treeRot.x, treeRot.y, treeRot.z);

@@ -67,6 +67,9 @@ public class PlayerManager : MonoBehaviour
             {
                 Debug.Log("Ray hitting something");
 
+                Resource curResource;
+
+
                 if (hit.transform.gameObject.tag == "Terrain")
                 {
                     Debug.Log("Player Hit Terrain");
@@ -80,28 +83,73 @@ public class PlayerManager : MonoBehaviour
                 }
                 else if(hit.transform.gameObject.tag == "LargeRock")
                 {
+                    curResource = hit.transform.gameObject.GetComponent<Resource>();
+
                     if (tools[0].active)
                     {
                         int amount = Random.Range(1, 3);
-                        AddItem(1, amount);
+                        if (curResource.amount < amount)
+                        {
+                            amount = curResource.amount;
+                            AddItem(1, amount);
+                            Destroy(hit.transform.gameObject);
+                        }
+                        else
+                        {
+                            AddItem(1, amount);
+                            curResource.amount -= amount;
+                        }
                     }
                     if (tools[1].active)
                     {
                         int amount = Random.Range(5, 10);
-                        AddItem(1, amount);
+                        if (curResource.amount < amount)
+                        {
+                            amount = curResource.amount;
+                            AddItem(1, amount);
+                            Destroy(hit.transform.gameObject);
+                        }
+                        else
+                        {
+                            AddItem(1, amount);
+                            curResource.amount -= amount;
+                        }
                     }
                 }
                 else if (hit.transform.gameObject.tag == "Tree")
                 {
+                    curResource = hit.transform.gameObject.GetComponent<Resource>();
+
                     if (tools[0].active)
                     {
                         int amount = Random.Range(1, 5);
-                        AddItem(2, amount);
+                        if (curResource.amount < amount)
+                        {
+                            amount = curResource.amount;
+                            AddItem(2, amount);
+                            Destroy(hit.transform.gameObject);
+                        }
+                        else
+                        {
+                            AddItem(2, amount);
+                            curResource.amount -= amount;
+                        }
                     }
                     else if (tools[2].active)
                     {
                         int amount = Random.Range(5, 10);
-                        AddItem(2, amount);
+
+                        if (curResource.amount < amount)
+                        {
+                            amount = curResource.amount;
+                            AddItem(2, amount);
+                            Destroy(hit.transform.gameObject);
+                        }
+                        else
+                        {
+                            AddItem(2, amount);
+                            curResource.amount -= amount;
+                        }
                     }
                 }
                 else
@@ -256,7 +304,7 @@ public class PlayerManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            DrawInterface();
+            DrawCraftingInterface();
         }
 
     }
@@ -467,12 +515,7 @@ public class PlayerManager : MonoBehaviour
         return result;
     }
 
-    void CheckCraft()
-    {
-
-    }
-
-    void DrawInterface()
+    void DrawCraftingInterface()
     {
         GUI.skin = skin;
 
@@ -496,25 +539,34 @@ public class PlayerManager : MonoBehaviour
         for (int x = 0; x < database.craftingDatabase[curCrafting].requiredItems.Count; x++)
         {
             GUI.Box(new Rect(255, 60 + (x * 42), 230, 40), database.craftingDatabase[curCrafting].requiredItems[x].amount.ToString() + " " + database.itemDatabase[database.craftingDatabase[curCrafting].requiredItems[x].ID].name);
+        }
 
-            if (GUI.Button(new Rect(255, 450, 230, 40), "Craft!"))
+        bool canCraft = false;
+
+        for(int i = 0; i < items.Count; i++)
+        {
+            for(int j = 0; j < database.craftingDatabase[curCrafting].requiredItems.Count; j++)
             {
-                bool canCraft = false;
-
-                foreach (CraftingRecipeItem items in database.craftingDatabase[curCrafting].requiredItems)
+                if(!InventoryContains(database.craftingDatabase[curCrafting].requiredItems[j].ID))
                 {
-                    if (InventoryContains(database.craftingDatabase[curCrafting].requiredItems[x].ID))
-                    {
-                        canCraft = true;
-                    }
+                    canCraft = false;
                 }
-
-                if (canCraft)
+                else
                 {
-                    AddItem(database.craftingDatabase[curCrafting].madeItemID, database.craftingDatabase[curCrafting].amount);
-                    foreach (CraftingRecipeItem items in database.craftingDatabase[curCrafting].requiredItems)
+                    canCraft = true;
+                }
+            }
+        }
+
+        if (canCraft)
+        {
+            if (GUI.Button(new Rect(255, 445, 230, 40), "Craft!"))
+            {
+                for (int j = 0; j < database.craftingDatabase[curCrafting].requiredItems.Count; j++)
+                {
+                    for (int i = 0; i < items.Count; i++)
                     {
-                        RemoveItem(database.craftingDatabase[curCrafting].requiredItems[x].ID, database.craftingDatabase[curCrafting].requiredItems[x].amount);
+                        RemoveItem(database.craftingDatabase[curCrafting].requiredItems[j].amount, database.craftingDatabase[curCrafting].requiredItems[j].amount);
                     }
                 }
             }
