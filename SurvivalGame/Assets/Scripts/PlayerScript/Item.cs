@@ -13,10 +13,12 @@ public class Item
         resource,
         building,
         tools,
+        consumable,
         junk
     }
 
     public ItemType iType;
 
-    public GameObject toolObject;
+    public int thirstReplenish;
+    public int hungerReplenish;
 }

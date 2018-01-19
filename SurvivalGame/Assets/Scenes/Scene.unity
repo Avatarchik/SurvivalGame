@@ -120,6 +120,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].requiredItems.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4637982022513734, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 25
@@ -151,6 +161,36 @@ Prefab:
     - target: {fileID: 4637982022513734, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].requiredItems.Array.data[0].ID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].requiredItems.Array.data[0].amount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].madeItemID
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].requiredItems.Array.data[1].ID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114928903695485670, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: craftingDatabase.Array.data[1].requiredItems.Array.data[1].amount
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d, type: 2}
