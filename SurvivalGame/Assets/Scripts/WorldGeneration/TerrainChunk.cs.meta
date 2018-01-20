@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 63d2a970007f84193bf05f8f667daa73
-timeCreated: 1496353870
-licenseType: Pro
+timeCreated: 1516406652
+licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - waterObject: {fileID: 1456567743529502, guid: fa9cb5d64f8a1674e8ea4901b48755f1,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

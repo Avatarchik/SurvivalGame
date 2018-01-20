@@ -31,6 +31,7 @@ public class TerrainGenerator : MonoBehaviour {
     public List<GameObject> treeObjects;
     public List<GameObject> rockObjects;
     public List<GameObject> grassObjects;
+    public GameObject waterObject;
 
     void Start()
     {

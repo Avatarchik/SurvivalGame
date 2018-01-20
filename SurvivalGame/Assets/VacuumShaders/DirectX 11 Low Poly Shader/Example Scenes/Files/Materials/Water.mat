@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: 4800000, guid: a74351820c662b6479cf73a6e97c3073, type: 3}
+  m_Shader: {fileID: 4800000, guid: a6cb22b4e173e5541914199d99abdbc8, type: 3}
   m_ShaderKeywords: V_LP_DISPLACE_PARAMETRIC V_LP_LIGHT_ON V_LP_REFLECTIVE_REALTIME
     _EMISSION
   m_LightmapFlags: 1
@@ -96,11 +96,11 @@ Material:
     - _CubeIsHDR: 0
     - _Cutoff: 0
     - _DetailNormalMapScale: 1
-    - _DisplaceAmplitude: 0.38
+    - _DisplaceAmplitude: 1
     - _DisplaceBlendType: 1
-    - _DisplaceDirection: 322
-    - _DisplaceFrequency: 0.4
-    - _DisplaceNoiseCoef: -1
+    - _DisplaceDirection: 191
+    - _DisplaceFrequency: 0.5
+    - _DisplaceNoiseCoef: 1
     - _DisplaceScriptSynchronize: 1
     - _DisplaceSpeed: 1
     - _DisplaceStrength: 2.31
@@ -130,7 +130,7 @@ Material:
     - _ReflectionDistortion: 0.3
     - _ReflectionFresnel: 1
     - _ReflectionRoughness: 0
-    - _ReflectionStrengthOffset: 0
+    - _ReflectionStrengthOffset: -0.32
     - _SHADER_TYPE_LABEL: 0
     - _SPECULAR_LABEL: 0
     - _SamplingType: 0

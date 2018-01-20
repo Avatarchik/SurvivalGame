@@ -53,7 +53,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
         heightMapSettings.noiseSettings.scale = scale;
         heightMapSettings.noiseSettings.octaves = octaves;
         heightMapSettings.noiseSettings.persistance = persistance;
-        heightMapSettings.noiseSettings.lacunarity = lacunarity;
+        //heightMapSettings.noiseSettings.lacunarity = lacunarity;
         heightMapSettings.heightMultiplier = heightMulti;
 
         SpawnPlayer();

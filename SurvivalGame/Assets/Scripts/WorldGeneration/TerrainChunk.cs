@@ -7,6 +7,7 @@ public class TerrainChunk : MonoBehaviour
     public List<GameObject> treeList;
     public List<GameObject> rockList;
     public List<GameObject> grassList;
+    public GameObject waterObject;
 
     public bool hasTreesGen;
 
@@ -59,6 +60,7 @@ public class TerrainChunk : MonoBehaviour
 
         treeList = GameObject.FindObjectOfType<TerrainGenerator>().treeObjects;
         rockList = GameObject.FindObjectOfType<TerrainGenerator>().rockObjects;
+        waterObject = GameObject.FindObjectOfType<TerrainGenerator>().waterObject;
 
         sampleCentre = coord * meshSettings.meshWorldSize / meshSettings.meshScale;
 		Vector2 position = coord * meshSettings.meshWorldSize ;
@@ -75,6 +77,7 @@ public class TerrainChunk : MonoBehaviour
 		meshObject.transform.parent = parent;
         meshObject.gameObject.tag = "Terrain";
         meshObject.gameObject.layer = LayerMask.NameToLayer("Terrain");
+        meshObject.isStatic = true;
 		SetVisible(false);
 
 		lodMeshes = new LODMesh[detailLevels.Length];
@@ -173,7 +176,7 @@ public class TerrainChunk : MonoBehaviour
                 if (hasTreesGen == false)
                 {
 
-                    int treeNumber = Random.Range(20, 30);
+                    /*int treeNumber = Random.Range(20, 30);
                     for (int i = 0; i < treeNumber; i++)
                     {
                         CreateTree();
@@ -196,14 +199,12 @@ public class TerrainChunk : MonoBehaviour
                     for (int r = 0; r < rockNumberThree; r++)
                     {
                         CreateRockLayer(25, 100);
-                    }
-
-                    /*int grassNumber = Random.Range(20, 30);
-                    for (int g = 0; g < grassNumber; g++)
-                    {
-                        CreateGrassLayer(5, 25);
-                        Debug.Log("Created Grass");
                     }*/
+
+                    /*Vector3 waterPos = new Vector3(0, 44, 0);
+                    GameObject curWater = Instantiate(waterObject, waterPos, Quaternion.identity) as GameObject;
+                    curWater.transform.parent = meshObject.transform;
+                    curWater.transform.localPosition = waterPos;*/
                 }
             }
 		}
@@ -265,7 +266,7 @@ public class TerrainChunk : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(new Vector3(grassPosX, 100, grassPosZ), Vector3.down);
 
-        int grassType = Random.Range(0, rockList.Count);
+        int grassType = Random.Range(0, grassList.Count);
 
         if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
         {
