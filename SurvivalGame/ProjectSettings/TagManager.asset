@@ -10,6 +10,7 @@ TagManager:
   - TerrainGen
   - SmallRock
   - LargeRock
+  - ShipWheel
   layers:
   - Default
   - TransparentFX

@@ -43,8 +43,8 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         worldCreator = GameObject.FindGameObjectWithTag("GameController").GetComponent<SingleplayerWorldCreator>();
-
         database = GameObject.FindGameObjectWithTag("GameController").GetComponent<Database>();
+        controller = transform.parent.gameObject.GetComponent<FirstPersonController>();
 
         for (int x = 0; x < items.Count; x++)
         {
@@ -66,12 +66,17 @@ public class PlayerManager : MonoBehaviour
         RenderSettings.fogColor = normalColor;
         RenderSettings.fogDensity = 0.0005f;
 
+        controller.m_GravityMultiplier = 2;
     }
 
     void SetUnderwater()
     {
         RenderSettings.fogColor = underwaterColor;
         RenderSettings.fogDensity = 0.01f;
+
+        controller.m_GravityMultiplier = 0.2f;
+        controller.m_Jump = false;
+        controller.m_Jumping = false;
     }
 
     void Update()
@@ -182,6 +187,11 @@ public class PlayerManager : MonoBehaviour
                         }
                     }
                 }
+                else if(hit.transform.gameObject.tag == "ShipWheel")
+                {
+                    ShipControls curShip = hit.transform.parent.gameObject.GetComponent<ShipControls>();
+                    curShip.playerAtWheel = !curShip.playerAtWheel;
+                }
                 else
                 {
                     Debug.Log("hit something that wasnt important, i hit: " + hit.transform.gameObject.tag);
@@ -284,6 +294,8 @@ public class PlayerManager : MonoBehaviour
 
     void OnGUI()
     {
+        GUI.skin = skin;
+
         GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "");
         GUI.Box (new Rect (0, 0, 120, 30), "Health: " + health + " / " + maxHealth);
 

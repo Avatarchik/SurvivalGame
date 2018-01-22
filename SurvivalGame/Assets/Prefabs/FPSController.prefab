@@ -835,9 +835,10 @@ MonoBehaviour:
   - {fileID: 1123678729167676}
   - {fileID: 1231346708432254}
   - {fileID: 1642465699921534}
+  isUnderwater: 0
   normalColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 0}
-  underwaterColor: {r: 0, g: 0.64705884, b: 0.5399594, a: 0}
-  waterLevel: 95
+  underwaterColor: {r: 0, g: 0.27586195, b: 0.4705882, a: 0}
+  waterLevel: 94.6
 --- !u!114 &114671082605374852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -965,6 +966,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  m_Jump: 0
+  m_Jumping: 0
 --- !u!124 &124130481505419650
 Behaviour:
   m_ObjectHideFlags: 1
