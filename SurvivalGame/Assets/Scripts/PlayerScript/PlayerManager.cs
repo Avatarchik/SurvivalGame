@@ -5,6 +5,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    ShipControls curShip;
+
     public SingleplayerWorldCreator worldCreator;
 
     public FirstPersonController controller;
@@ -189,7 +192,7 @@ public class PlayerManager : MonoBehaviour
                 }
                 else if(hit.transform.gameObject.tag == "ShipWheel")
                 {
-                    ShipControls curShip = hit.transform.parent.gameObject.GetComponent<ShipControls>();
+                    curShip = hit.transform.parent.gameObject.GetComponent<ShipControls>();
                     curShip.playerAtWheel = !curShip.playerAtWheel;
                 }
                 else
@@ -244,7 +247,7 @@ public class PlayerManager : MonoBehaviour
         }
 
 
-        if(!pauseMenu && !craftOpen && !invOpen)
+        if(!pauseMenu && !craftOpen && !invOpen && !curShip.playerAtWheel)
         {
             controller.enabled = true;
 

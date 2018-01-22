@@ -5,6 +5,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class ShipControls : MonoBehaviour {
 
+    FirstPersonController controller;
+
     public float waterLevel;
     public bool playerBoarded;
     public bool playerAtWheel;
@@ -17,13 +19,14 @@ public class ShipControls : MonoBehaviour {
     {
         Vector3 startPos = new Vector3(transform.position.x, waterLevel, transform.position.z);
         transform.position = startPos;
+
+        controller = GameObject.FindObjectOfType<FirstPersonController>();
     }
 
 	void Update ()
     {
         if (playerAtWheel)
         {
-            FirstPersonController controller = GameObject.FindObjectOfType<FirstPersonController>();
             controller.enabled = false;
         }
     }
@@ -35,14 +38,14 @@ public class ShipControls : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.A))
             {
-                float shipRot = transform.localEulerAngles.y - 2f;
+                float shipRot = transform.localEulerAngles.y - 0.2f;
 
                 Vector3 newRot = new Vector3(0f, shipRot, 0f);
                 transform.localEulerAngles = newRot;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                float shipRot = transform.localEulerAngles.y + 2f;
+                float shipRot = transform.localEulerAngles.y + 0.2f;
 
                 Vector3 newRot = new Vector3(0f, shipRot, 0f);
                 transform.localEulerAngles = newRot;
