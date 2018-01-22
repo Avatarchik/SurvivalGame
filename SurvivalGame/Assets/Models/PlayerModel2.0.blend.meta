@@ -1,21 +1,66 @@
 fileFormatVersion: 2
-guid: f1edf37fc2fa8f64ba3fbc1ac05618e1
+guid: 869fc3af439bee74fab6780743fadc6a
+timeCreated: 1516483839
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Cylinder_010
-    100002: Plane
-    100004: //RootNode
-    400000: Cylinder_010
-    400002: Plane
-    400004: //RootNode
-    2100000: None__Raft_Texture_png
-    2300000: Cylinder_010
-    2300002: Plane
-    3300000: Cylinder_010
-    3300002: Plane
-    4300000: Plane
-    4300002: Cylinder_010
+    100000: chest
+    100002: Cube
+    100004: foot_L
+    100006: foot_R
+    100008: forearm_L
+    100010: forearm_R
+    100012: head
+    100014: heel_02_L
+    100016: heel_02_R
+    100018: heel_L
+    100020: heel_R
+    100022: hips
+    100024: metarig
+    100026: neck
+    100028: //RootNode
+    100030: shin_L
+    100032: shin_R
+    100034: shoulder_L
+    100036: shoulder_R
+    100038: spine
+    100040: thigh_L
+    100042: thigh_R
+    100044: toe_L
+    100046: toe_R
+    100048: upper_arm_L
+    100050: upper_arm_R
+    400000: chest
+    400002: Cube
+    400004: foot_L
+    400006: foot_R
+    400008: forearm_L
+    400010: forearm_R
+    400012: head
+    400014: heel_02_L
+    400016: heel_02_R
+    400018: heel_L
+    400020: heel_R
+    400022: hips
+    400024: metarig
+    400026: neck
+    400028: //RootNode
+    400030: shin_L
+    400032: shin_R
+    400034: shoulder_L
+    400036: shoulder_R
+    400038: spine
+    400040: thigh_L
+    400042: thigh_R
+    400044: toe_L
+    400046: toe_R
+    400048: upper_arm_L
+    400050: upper_arm_R
+    2100000: Material
+    2300000: Cube
+    3300000: Cube
+    4300000: Cube
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

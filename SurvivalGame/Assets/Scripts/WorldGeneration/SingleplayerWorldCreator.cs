@@ -16,17 +16,17 @@ public class SingleplayerWorldCreator : MonoBehaviour
 
     public HeightMapSettings heightMapSettings;
 
-    const float normalScale = 450;
+    const float normalScale = 1500;
     const int normalOctaves = 15;
-    const float normalPersistance = 0.45f;
+    const float normalPersistance = 0.47f;
     const float normalLacunarity = 2.1f;
-    const float normalHeightMulti = 150;
+    const float normalHeightMulti = 500;
 
-    float scale = 450;
+    float scale = 1500;
     int octaves = 15;
-    float persistance = 0.45f;
+    float persistance = 0.47f;
     float lacunarity = 2.1f;
-    float heightMulti = 150;
+    float heightMulti = 500;
 
 
     private void Start()
@@ -53,7 +53,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
         heightMapSettings.noiseSettings.scale = scale;
         heightMapSettings.noiseSettings.octaves = octaves;
         heightMapSettings.noiseSettings.persistance = persistance;
-        //heightMapSettings.noiseSettings.lacunarity = lacunarity;
+        heightMapSettings.noiseSettings.lacunarity = lacunarity;
         heightMapSettings.heightMultiplier = heightMulti;
 
         SpawnPlayer();

@@ -176,7 +176,7 @@ public class TerrainChunk : MonoBehaviour
                 if (hasTreesGen == false)
                 {
 
-                    /*int treeNumber = Random.Range(20, 30);
+                    int treeNumber = Random.Range(20, 30);
                     for (int i = 0; i < treeNumber; i++)
                     {
                         CreateTree();
@@ -186,25 +186,22 @@ public class TerrainChunk : MonoBehaviour
                     int rockNumberOne = Random.Range(10, 20);
                     for (int j = 0; j < rockNumberOne; j++)
                     {
-                        CreateRockLayer(0, 5);
+                        CreateRockLayer(0, 104);
                     }
 
                     int rockNumberTwo = Random.Range(1, 5);
                     for (int e = 0; e < rockNumberTwo; e++)
                     {
-                        CreateRockLayer(5, 20);
+                        CreateRockLayer(105, 180);
                     }
 
                     int rockNumberThree = Random.Range(20, 30);
                     for (int r = 0; r < rockNumberThree; r++)
                     {
-                        CreateRockLayer(25, 100);
-                    }*/
+                        CreateRockLayer(180, 500);
+                    }
 
-                    /*Vector3 waterPos = new Vector3(0, 44, 0);
-                    GameObject curWater = Instantiate(waterObject, waterPos, Quaternion.identity) as GameObject;
-                    curWater.transform.parent = meshObject.transform;
-                    curWater.transform.localPosition = waterPos;*/
+                    CreateWaterLayer();
                 }
             }
 		}
@@ -216,7 +213,7 @@ public class TerrainChunk : MonoBehaviour
         float treePosZ = coord.y * 100 + Random.Range(-50, 50);
 
         RaycastHit hit;
-        Ray ray = new Ray(new Vector3(treePosX, 100, treePosZ), Vector3.down);
+        Ray ray = new Ray(new Vector3(treePosX, 250, treePosZ), Vector3.down);
 
         int treeType = Random.Range(0, treeList.Count);
 
@@ -224,7 +221,7 @@ public class TerrainChunk : MonoBehaviour
         {
         }
 
-        if (hit.point.y > 5 && hit.point.y < 25)
+        if (hit.point.y > 105 && hit.point.y < 180)
         {
             Vector3 treePos = new Vector3(treePosX, hit.point.y + 8.75f, treePosZ);
             Quaternion treeRot = new Quaternion(267f, 0, Random.Range(0, 360), 0);
@@ -240,11 +237,11 @@ public class TerrainChunk : MonoBehaviour
         float rockPosZ = coord.y * 100 + Random.Range(-50, 50);
 
         RaycastHit hit;
-        Ray ray = new Ray(new Vector3(rockPosX, 100, rockPosZ), Vector3.down);
+        Ray ray = new Ray(new Vector3(rockPosX, 800, rockPosZ), Vector3.down);
 
         int rockType = Random.Range(0, rockList.Count);
 
-        if (meshCollider.Raycast(ray, out hit, 2.0f * 100))
+        if (meshCollider.Raycast(ray, out hit, 2.0f * 800))
         {
         }
 
@@ -258,13 +255,22 @@ public class TerrainChunk : MonoBehaviour
         }
     }
 
+    void CreateWaterLayer()
+    {
+        Vector3 waterStartPos = new Vector3(0, 800f, 0);
+        Vector3 waterPos = new Vector3(0, 95f, 0);
+        GameObject curWater = Instantiate(waterObject, waterStartPos, Quaternion.identity);
+        curWater.transform.parent = meshObject.transform;
+        curWater.transform.localPosition = waterPos;
+    }
+
     void CreateGrassLayer(float minHeight, float maxHeight)
     {
         float grassPosX = coord.x * 100 + Random.Range(-50, 50);
         float grassPosZ = coord.y * 100 + Random.Range(-50, 50);
 
         RaycastHit hit;
-        Ray ray = new Ray(new Vector3(grassPosX, 100, grassPosZ), Vector3.down);
+        Ray ray = new Ray(new Vector3(grassPosX, 250, grassPosZ), Vector3.down);
 
         int grassType = Random.Range(0, grassList.Count);
 

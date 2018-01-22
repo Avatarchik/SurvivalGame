@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     public Database database;
     public List<InventoryItem> items;
     public List<InventoryItem> hotbarItems;
+    public List<ItemToBeRemoved> itemsToBeRemoved;
 
     bool draggingItem;
     InventoryItem draggedItem;
@@ -32,6 +33,12 @@ public class PlayerManager : MonoBehaviour
     public int health, maxHealth;
 
     public List<GameObject> tools;
+
+    [HideInInspector]
+    public bool isUnderwater;
+    public Color normalColor;
+    public Color underwaterColor;
+    public float waterLevel;
 
     void Start()
     {
@@ -54,8 +61,31 @@ public class PlayerManager : MonoBehaviour
         AddItem(6, 1);
     }
 
+    void SetNormal()
+    {
+        RenderSettings.fogColor = normalColor;
+        RenderSettings.fogDensity = 0.0005f;
+
+    }
+
+    void SetUnderwater()
+    {
+        RenderSettings.fogColor = underwaterColor;
+        RenderSettings.fogDensity = 0.01f;
+    }
+
     void Update()
     {
+
+        RemoveItemFromQueue();
+
+        if ((transform.position.y < waterLevel) != isUnderwater)
+        {
+            isUnderwater = transform.position.y < waterLevel;
+            if (isUnderwater) SetUnderwater();
+            if (!isUnderwater) SetNormal();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Click!");
@@ -515,6 +545,26 @@ public class PlayerManager : MonoBehaviour
         return result;
     }
 
+    public void RemoveItemFromQueue()
+    {
+        if (itemsToBeRemoved[0] != null)
+        {
+            if (itemsToBeRemoved[0].ID != 0)
+            {
+                RemoveItem(itemsToBeRemoved[0].ID, itemsToBeRemoved[0].amount);
+                itemsToBeRemoved.RemoveAt(0);
+            }
+            else
+            {
+                if (itemsToBeRemoved[0].ID != 0)
+                {
+                    RemoveItem(itemsToBeRemoved[0].ID, itemsToBeRemoved[0].amount);
+                    itemsToBeRemoved.RemoveAt(0);
+                }
+            }
+        }
+    }
+
     void DrawCraftingInterface()
     {
         GUI.skin = skin;
@@ -564,14 +614,28 @@ public class PlayerManager : MonoBehaviour
             {
                 for (int j = 0; j < database.craftingDatabase[curCrafting].requiredItems.Count; j++)
                 {
-                    for (int i = 0; i < items.Count; i++)
-                    {
-                        RemoveItem(database.craftingDatabase[curCrafting].requiredItems[j].amount, database.craftingDatabase[curCrafting].requiredItems[j].amount);
-                    }
+                    ItemToBeRemoved newQueue = new ItemToBeRemoved(database.craftingDatabase[curCrafting].requiredItems[j].ID, database.craftingDatabase[curCrafting].requiredItems[j].amount);
+                    itemsToBeRemoved.Add(newQueue);
                 }
+
+                AddItem(database.craftingDatabase[curCrafting].madeItemID, database.craftingDatabase[curCrafting].amount);
             }
         }
 
         GUI.EndGroup();
     }
 }
+
+[System.Serializable]
+public class ItemToBeRemoved
+{
+    public int ID;
+    public int amount;
+
+    public ItemToBeRemoved(int id, int newAmount)
+    {
+        ID = id;
+        amount = newAmount;
+    }
+}
+

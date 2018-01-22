@@ -13,7 +13,7 @@ public class WaterPos : MonoBehaviour {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        Vector3 pos = new Vector3(player.transform.position.x, 44f, player.transform.position.z);
+        Vector3 pos = new Vector3(player.transform.position.x, 96f, player.transform.position.z);
         transform.position = pos;
 	}
 }

@@ -572,175 +572,200 @@ MonoBehaviour:
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   hotbarItems:
   - item:
@@ -748,50 +773,60 @@ MonoBehaviour:
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
   - item:
       name: 
       ID: 0
       icon: {fileID: 0}
       iType: 0
-      toolObject: {fileID: 0}
+      thirstReplenish: 0
+      hungerReplenish: 0
     stack: 0
+  itemsToBeRemoved:
+  - ID: 0
+    amount: 0
   selectedItemHotbar: 0
   curCrafting: 0
   health: 100
@@ -800,6 +835,9 @@ MonoBehaviour:
   - {fileID: 1123678729167676}
   - {fileID: 1231346708432254}
   - {fileID: 1642465699921534}
+  normalColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 0}
+  underwaterColor: {r: 0, g: 0.64705884, b: 0.5399594, a: 0}
+  waterLevel: 95
 --- !u!114 &114671082605374852
 MonoBehaviour:
   m_ObjectHideFlags: 1
