@@ -33,7 +33,10 @@ public class PlayerManager : MonoBehaviour
     public int selectedItemHotbar;
     public int curCrafting;
 
-    public int health, maxHealth;
+    public float hunger, thirst, stamina, coldness, health;
+    public float maxHunger, maxThirst, maxStamina, maxColdness, maxHealth;
+    private bool running;
+    private bool triggeringFireplace;
 
     public List<GameObject> tools;
 
@@ -62,6 +65,9 @@ public class PlayerManager : MonoBehaviour
         AddItem(4, 1);
         AddItem(5, 1);
         AddItem(6, 1);
+
+        stamina = maxStamina;
+        health = maxHealth;
     }
 
     void SetNormal()
@@ -288,6 +294,55 @@ public class PlayerManager : MonoBehaviour
             tools[1].active = false;
             tools[2].active = false;
         }
+
+        if (health < maxHealth && coldness < maxColdness && hunger < maxHunger && thirst < maxThirst)
+            health += 0.5f * Time.deltaTime;
+
+        if (hunger < maxHunger)
+            hunger += 0.25f * Time.deltaTime;
+
+        if (thirst < maxThirst)
+            thirst += 0.5f * Time.deltaTime;
+
+        if (hunger >= maxHunger && health > 0)
+        {
+            health -= 1.5f * Time.deltaTime;
+        }
+
+        if (thirst >= maxThirst && health > 0)
+        {
+            health -= 2.5f * Time.deltaTime;
+        }
+
+        if (coldness >= maxColdness && health > 0)
+        {
+            health -= 0.5f * Time.deltaTime;
+        }
+
+        if (health <= 0)
+        {
+            Die();
+        }
+
+        if (stamina < maxStamina)
+            stamina += 2f * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+            stamina -= 10 * Time.deltaTime;
+
+        if (stamina <= 0)
+            print("Stamina = 0, you can't sprint anymore. Wait a little bit to sprint again.");
+
+        if (triggeringFireplace && coldness > 0)
+        {
+            coldness -= 1 * Time.deltaTime;
+        }
+
+        if (triggeringFireplace == false)
+        {
+            coldness += 1 * Time.deltaTime;
+        }
+
     }
 
     public void UpdateHealth(int change)
@@ -638,6 +693,63 @@ public class PlayerManager : MonoBehaviour
         }
 
         GUI.EndGroup();
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Food")
+        {
+            if (hunger < 50)
+            {
+                health = health + 15;
+                hunger = hunger - hunger;
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                health = health + 15;
+                hunger = hunger - 50;
+                Destroy(other.gameObject);
+            }
+
+        }
+
+        if (other.tag == "Water")
+        {
+            if (thirst < 25)
+            {
+                thirst = thirst - thirst;
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                thirst = thirst - 25;
+                Destroy(other.gameObject);
+            }
+
+        }
+
+        if (other.tag == "Fireplace")
+        {
+            triggeringFireplace = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Fireplace")
+        {
+            triggeringFireplace = false;
+        }
+    }
+
+    void Die()
+    {
+        if (health <= 0 && coldness >= maxColdness)
+            print("You've died becuase of coldness.");
+        if (health <= 0 && hunger >= maxHunger)
+            print("You've died becuase of hunger.");
+        if (health <= 0 && thirst >= maxThirst)
+            print("You've died becuase of thirst.");
     }
 }
 
