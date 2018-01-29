@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Water
+  m_Name: Player
   m_Shader: {fileID: 4800000, guid: 22c0784a4c40f07449b6fd72ae9e31fe, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: V_LP_DISPLACE_PARAMETRIC
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,6 +19,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -70,6 +74,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SecondTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -77,11 +85,12 @@ Material:
     m_Floats:
     - _BUMP_LABEL: 0
     - _BumpScale: 1
+    - _CubeIsHDR: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DisplaceAmplitude: 0.5
     - _DisplaceBlendType: 1
-    - _DisplaceDirection: 45
+    - _DisplaceDirection: 221
     - _DisplaceFrequency: 0.2
     - _DisplaceNoiseCoef: -0.5
     - _DisplaceScriptSynchronize: 0
@@ -109,6 +118,10 @@ Material:
     - _PixelTextureID: 0
     - _REFLECTION_LABEL: 0
     - _RENDERING_MODE_LABEL: 0
+    - _ReflectionDistortion: 1
+    - _ReflectionFresnel: 1
+    - _ReflectionRoughness: 0
+    - _ReflectionStrengthOffset: 0
     - _SHADER_TYPE_LABEL: 0
     - _SPECULAR_LABEL: 0
     - _SamplingType: 0
@@ -134,5 +147,6 @@ Material:
     - _EmissionTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _PixelTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
+    - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _SecondTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_Color: {r: 0, g: 0, b: 0, a: 1}

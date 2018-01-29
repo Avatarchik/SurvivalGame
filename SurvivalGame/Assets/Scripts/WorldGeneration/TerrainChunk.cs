@@ -258,10 +258,12 @@ public class TerrainChunk : MonoBehaviour
     void CreateWaterLayer()
     {
         Vector3 waterStartPos = new Vector3(0, 800f, 0);
-        Vector3 waterPos = new Vector3(0, 95f, 0);
-        GameObject curWater = Instantiate(waterObject, waterStartPos, Quaternion.identity);
+        Vector3 waterPos = new Vector3(meshObject.transform.position.x, 95f, meshObject.transform.position.z);
+        GameObject curWater = Instantiate(waterObject, waterPos, Quaternion.identity);
+        curWater.isStatic = false;
         curWater.transform.parent = meshObject.transform;
-        curWater.transform.localPosition = waterPos;
+        transform.localPosition = waterPos;
+        curWater.isStatic = true;
     }
 
     void CreateGrassLayer(float minHeight, float maxHeight)

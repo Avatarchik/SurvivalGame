@@ -829,7 +829,15 @@ MonoBehaviour:
     amount: 0
   selectedItemHotbar: 0
   curCrafting: 0
+  hunger: 0
+  thirst: 0
+  stamina: 0
+  coldness: 0
   health: 100
+  maxHunger: 100
+  maxThirst: 100
+  maxStamina: 100
+  maxColdness: 100
   maxHealth: 100
   tools:
   - {fileID: 1123678729167676}
