@@ -696,7 +696,7 @@ public class PlayerManager : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Food")
+        /*if (other.tag == "Food")
         {
             if (hunger < 50)
             {
@@ -726,7 +726,7 @@ public class PlayerManager : MonoBehaviour
                 Destroy(other.gameObject);
             }
 
-        }
+        }*/
 
         if (other.tag == "Fireplace")
         {
@@ -745,11 +745,17 @@ public class PlayerManager : MonoBehaviour
     void Die()
     {
         if (health <= 0 && coldness >= maxColdness)
-            print("You've died becuase of coldness.");
+        {
+
+        }
         if (health <= 0 && hunger >= maxHunger)
-            print("You've died becuase of hunger.");
+        {
+
+        }
         if (health <= 0 && thirst >= maxThirst)
-            print("You've died becuase of thirst.");
+        {
+
+        }
     }
 }
 

@@ -19,12 +19,15 @@ public class ShipControls : MonoBehaviour {
     {
         Vector3 startPos = new Vector3(transform.position.x, waterLevel, transform.position.z);
         transform.position = startPos;
-
-        controller = GameObject.FindObjectOfType<FirstPersonController>();
     }
 
 	void Update ()
     {
+        if(controller == null)
+        {
+            controller = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        }
+
         if (playerAtWheel)
         {
             controller.enabled = false;

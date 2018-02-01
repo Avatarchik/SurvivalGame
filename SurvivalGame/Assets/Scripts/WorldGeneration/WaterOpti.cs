@@ -8,34 +8,36 @@ public class WaterOpti : MonoBehaviour {
 
     void Start()
     {
-        manager = GameObject.FindObjectOfType<PlayerManager>();
+        //manager = GameObject.FindObjectOfType<PlayerManager>();
 
-        RaycastHit hit;
+        /*RaycastHit hit;
         Ray ray = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.down);
 
         if (Physics.Raycast(ray, out hit, 1000))
         {
+            Debug.Log("hit at: " + hit.point.y);
+
             if (hit.point.y < 125f)
             {
-                Vector3 waterPos = new Vector3(0, 95f, 0);
-
+                Debug.Log("Didn't destroy water");
             }
-            else if (hit.point.y > 125f)
+            else
             {
+                Debug.Log("Destroyed water tile because water height was: " + hit.point.y);
                 Destroy(this.gameObject);
             }
-        }
+        }*/
     }
 
     private void Update()
     {
-        if (manager.isUnderwater)
+        /*if (manager.isUnderwater)
         {
             transform.localScale = new Vector3(transform.localScale.x, -1.0f, transform.localScale.z);
         }
         else
         {
             transform.localScale = new Vector3(transform.localScale.x, 1.0f, transform.localScale.z);
-        }
+        }*/
     }
 }
