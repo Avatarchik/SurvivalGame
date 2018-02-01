@@ -696,38 +696,6 @@ public class PlayerManager : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        /*if (other.tag == "Food")
-        {
-            if (hunger < 50)
-            {
-                health = health + 15;
-                hunger = hunger - hunger;
-                Destroy(other.gameObject);
-            }
-            else
-            {
-                health = health + 15;
-                hunger = hunger - 50;
-                Destroy(other.gameObject);
-            }
-
-        }
-
-        if (other.tag == "Water")
-        {
-            if (thirst < 25)
-            {
-                thirst = thirst - thirst;
-                Destroy(other.gameObject);
-            }
-            else
-            {
-                thirst = thirst - 25;
-                Destroy(other.gameObject);
-            }
-
-        }*/
-
         if (other.tag == "Fireplace")
         {
             triggeringFireplace = true;

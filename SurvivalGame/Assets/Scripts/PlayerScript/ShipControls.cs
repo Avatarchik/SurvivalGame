@@ -15,10 +15,14 @@ public class ShipControls : MonoBehaviour {
 
     public float speed = 10f;
 
+    Rigidbody rb;
+
 	void Start ()
     {
         Vector3 startPos = new Vector3(transform.position.x, waterLevel, transform.position.z);
         transform.position = startPos;
+
+        rb = GetComponent<Rigidbody>();
     }
 
 	void Update ()
@@ -66,7 +70,9 @@ public class ShipControls : MonoBehaviour {
 
         if (mainSail)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            //transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+            rb.AddForce(transform.forward * speed * Time.deltaTime);
         }
     }
 }
