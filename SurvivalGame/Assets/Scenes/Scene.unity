@@ -498,13 +498,13 @@ MonoBehaviour:
   colliderLODIndex: 0
   detailLevels:
   - lod: 0
-    visibleDstThreshold: 800
+    visibleDstThreshold: 400
   - lod: 2
-    visibleDstThreshold: 1000
+    visibleDstThreshold: 800
   - lod: 3
-    visibleDstThreshold: 1600
+    visibleDstThreshold: 1000
   - lod: 4
-    visibleDstThreshold: 2200
+    visibleDstThreshold: 1500
   meshSettings: {fileID: 11400000, guid: c10e09cb6139e9a4a840c4fa72feb5aa, type: 2}
   heightMapSettings: {fileID: 11400000, guid: ebd67af7881f5ca45986ffbe92ea3b45, type: 2}
   textureSettings: {fileID: 11400000, guid: 11ef388c1d937e94884494b600f7ec3e, type: 2}
