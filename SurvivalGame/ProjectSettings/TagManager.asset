@@ -11,6 +11,7 @@ TagManager:
   - SmallRock
   - LargeRock
   - ShipWheel
+  - CraftingInterface
   layers:
   - Default
   - TransparentFX

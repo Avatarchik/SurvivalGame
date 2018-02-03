@@ -6,7 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerManager : MonoBehaviour
 {
 
-    ShipControls curShip;
+    public ShipManager curShip;
 
     public SingleplayerWorldCreator worldCreator;
 
@@ -24,7 +24,6 @@ public class PlayerManager : MonoBehaviour
     public Database database;
     public List<InventoryItem> items;
     public List<InventoryItem> hotbarItems;
-    public List<ItemToBeRemoved> itemsToBeRemoved;
 
     bool draggingItem;
     InventoryItem draggedItem;
@@ -90,9 +89,6 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-
-        RemoveItemFromQueue();
-
         if ((transform.position.y < waterLevel) != isUnderwater)
         {
             isUnderwater = transform.position.y < waterLevel;
@@ -196,10 +192,9 @@ public class PlayerManager : MonoBehaviour
                         }
                     }
                 }
-                else if(hit.transform.gameObject.tag == "ShipWheel")
+                else if(hit.transform.gameObject.tag == "CraftingInterface")
                 {
-                    curShip = hit.transform.parent.gameObject.GetComponent<ShipControls>();
-                    curShip.playerAtWheel = !curShip.playerAtWheel;
+
                 }
                 else
                 {
@@ -253,7 +248,7 @@ public class PlayerManager : MonoBehaviour
         }
 
 
-        if(!pauseMenu && !craftOpen && !invOpen && !curShip.playerAtWheel)
+        if(!pauseMenu && !craftOpen && !invOpen /*&& !curShip.playerAtWheel*/)
         {
             controller.enabled = true;
 
@@ -342,7 +337,6 @@ public class PlayerManager : MonoBehaviour
         {
             coldness += 1 * Time.deltaTime;
         }
-
     }
 
     public void UpdateHealth(int change)
@@ -403,8 +397,6 @@ public class PlayerManager : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-
-            DrawCraftingInterface();
         }
 
     }
@@ -615,85 +607,6 @@ public class PlayerManager : MonoBehaviour
         return result;
     }
 
-    public void RemoveItemFromQueue()
-    {
-        if (itemsToBeRemoved[0] != null)
-        {
-            if (itemsToBeRemoved[0].ID != 0)
-            {
-                RemoveItem(itemsToBeRemoved[0].ID, itemsToBeRemoved[0].amount);
-                itemsToBeRemoved.RemoveAt(0);
-            }
-            else
-            {
-                if (itemsToBeRemoved[0].ID != 0)
-                {
-                    RemoveItem(itemsToBeRemoved[0].ID, itemsToBeRemoved[0].amount);
-                    itemsToBeRemoved.RemoveAt(0);
-                }
-            }
-        }
-    }
-
-    void DrawCraftingInterface()
-    {
-        GUI.skin = skin;
-
-        GUI.BeginGroup(new Rect(Screen.width / 2 - 250, Screen.height / 2 - 250, 500, 500), "");
-
-        GUI.Box(new Rect(0, 0, 500, 500), "Crafting");
-
-        for (int i = 0; i < database.craftingDatabase.Count; i++)
-        {
-            if (GUI.Button(new Rect(5, 15 + (51 * i), 50, 50), database.itemDatabase[database.craftingDatabase[i].madeItemID].icon))
-            {
-                curCrafting = i;
-            }
-
-            GUI.Label(new Rect(40, 40 + (51 * i), 50, 50), database.craftingDatabase[i].amount.ToString(), skin.GetStyle("CustomLabel"));
-        }
-
-        GUI.Box(new Rect(250, 25, 240, 470), database.itemDatabase[database.craftingDatabase[curCrafting].madeItemID].name);
-        GUI.Label(new Rect(255, 40, 230, 40), "Required Items for Recipe");
-
-        for (int x = 0; x < database.craftingDatabase[curCrafting].requiredItems.Count; x++)
-        {
-            GUI.Box(new Rect(255, 60 + (x * 42), 230, 40), database.craftingDatabase[curCrafting].requiredItems[x].amount.ToString() + " " + database.itemDatabase[database.craftingDatabase[curCrafting].requiredItems[x].ID].name);
-        }
-
-        bool canCraft = false;
-
-        for(int i = 0; i < items.Count; i++)
-        {
-            for(int j = 0; j < database.craftingDatabase[curCrafting].requiredItems.Count; j++)
-            {
-                if(!InventoryContains(database.craftingDatabase[curCrafting].requiredItems[j].ID))
-                {
-                    canCraft = false;
-                }
-                else
-                {
-                    canCraft = true;
-                }
-            }
-        }
-
-        if (canCraft)
-        {
-            if (GUI.Button(new Rect(255, 445, 230, 40), "Craft!"))
-            {
-                for (int j = 0; j < database.craftingDatabase[curCrafting].requiredItems.Count; j++)
-                {
-                    ItemToBeRemoved newQueue = new ItemToBeRemoved(database.craftingDatabase[curCrafting].requiredItems[j].ID, database.craftingDatabase[curCrafting].requiredItems[j].amount);
-                    itemsToBeRemoved.Add(newQueue);
-                }
-
-                AddItem(database.craftingDatabase[curCrafting].madeItemID, database.craftingDatabase[curCrafting].amount);
-            }
-        }
-
-        GUI.EndGroup();
-    }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Fireplace")
@@ -724,19 +637,6 @@ public class PlayerManager : MonoBehaviour
         {
 
         }
-    }
-}
-
-[System.Serializable]
-public class ItemToBeRemoved
-{
-    public int ID;
-    public int amount;
-
-    public ItemToBeRemoved(int id, int newAmount)
-    {
-        ID = id;
-        amount = newAmount;
     }
 }
 

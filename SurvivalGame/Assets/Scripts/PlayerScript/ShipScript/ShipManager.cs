@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class ShipControls : MonoBehaviour {
+public class ShipManager : MonoBehaviour {
 
     FirstPersonController controller;
+    PlayerManager pManager;
+
+    public Transform wheelDetect;
 
     public float waterLevel;
     public bool playerBoarded;
@@ -30,11 +33,12 @@ public class ShipControls : MonoBehaviour {
         if(controller == null)
         {
             controller = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+            pManager =  GameObject.FindObjectOfType<PlayerManager>();
         }
 
-        if (playerAtWheel)
+        if (playerBoarded)
         {
-            controller.enabled = false;
+            pManager.curShip = this;
         }
     }
 
@@ -71,7 +75,6 @@ public class ShipControls : MonoBehaviour {
         if (mainSail)
         {
             //transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
             rb.AddForce(transform.forward * speed * Time.deltaTime);
         }
     }

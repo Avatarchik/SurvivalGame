@@ -42,14 +42,12 @@ public class SingleplayerWorldCreator : MonoBehaviour
 
     private void CreateWorld()
     {
-        heightMapSettings.noiseSettings.seed = seed;
-
         if (seed == 0)
         {
             seed = Random.Range(1, int.MaxValue);
-            heightMapSettings.noiseSettings.seed = seed;
         }
 
+        heightMapSettings.noiseSettings.seed = seed;
         heightMapSettings.noiseSettings.scale = scale;
         heightMapSettings.noiseSettings.octaves = octaves;
         heightMapSettings.noiseSettings.persistance = persistance;
@@ -98,7 +96,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
                 int.TryParse(GUI.TextField(new Rect(105, 60, 100, 30), seed.ToString()), out seed);
 
 
-                GUI.Label(new Rect(105, 95, 100, 30), "Risky Settings");
+                /*GUI.Label(new Rect(105, 95, 100, 30), "Risky Settings");
 
 
                 GUI.Label(new Rect(5, 130, 100, 50), "Noise Scale: \n" + scale);
@@ -114,7 +112,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
                 lacunarity = GUI.HorizontalSlider(new Rect(105, 255, 100, 30), lacunarity, 1.0f, 4.0f);
 
                 GUI.Label(new Rect(5, 310, 100, 50), "Height Scale: \n" + heightMulti);
-                heightMulti = GUI.HorizontalSlider(new Rect(105,  310, 100, 30), heightMulti, 50.0f, 1000.0f);
+                heightMulti = GUI.HorizontalSlider(new Rect(105,  310, 100, 30), heightMulti, 50.0f, 1000.0f);*/
 
                 if (GUI.Button(new Rect(225, 465, 120, 30), "Create World"))
                     CreateWorld();

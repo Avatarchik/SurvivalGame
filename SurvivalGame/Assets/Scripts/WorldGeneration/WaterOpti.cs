@@ -8,7 +8,7 @@ public class WaterOpti : MonoBehaviour {
 
     void Start()
     {
-        //manager = GameObject.FindObjectOfType<PlayerManager>();
+        manager = GameObject.FindObjectOfType<PlayerManager>();
 
         /*RaycastHit hit;
         Ray ray = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.down);
@@ -31,13 +31,13 @@ public class WaterOpti : MonoBehaviour {
 
     private void Update()
     {
-        /*if (manager.isUnderwater)
+        if (manager.isUnderwater)
         {
             transform.localScale = new Vector3(transform.localScale.x, -1.0f, transform.localScale.z);
         }
         else
         {
             transform.localScale = new Vector3(transform.localScale.x, 1.0f, transform.localScale.z);
-        }*/
+        }
     }
 }

@@ -183,7 +183,7 @@ public class TerrainChunk : MonoBehaviour
                         hasTreesGen = true;
                     }
 
-                    int rockNumberOne = Random.Range(10, 20);
+                    int rockNumberOne = Random.Range(5, 10);
                     for (int j = 0; j < rockNumberOne; j++)
                     {
                         CreateRockLayer(0, 104);

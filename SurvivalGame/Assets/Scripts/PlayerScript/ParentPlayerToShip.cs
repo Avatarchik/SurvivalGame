@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ParentPlayerToShip : MonoBehaviour {
 
-    ShipControls currentShip;
+    ShipManager currentShip;
 
     void Start ()
     {
-        currentShip = transform.parent.gameObject.GetComponent<ShipControls>();
+        currentShip = transform.parent.gameObject.GetComponent<ShipManager>();
 	}
 
     private void OnTriggerEnter(Collider other)
