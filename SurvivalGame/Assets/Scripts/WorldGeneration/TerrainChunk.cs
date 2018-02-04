@@ -176,7 +176,7 @@ public class TerrainChunk : MonoBehaviour
                 if (hasTreesGen == false)
                 {
 
-                    int treeNumber = Random.Range(20, 30);
+                    int treeNumber = Random.Range(10, 20);
                     for (int i = 0; i < treeNumber; i++)
                     {
                         CreateTree();
@@ -195,7 +195,7 @@ public class TerrainChunk : MonoBehaviour
                         CreateRockLayer(105, 180);
                     }
 
-                    int rockNumberThree = Random.Range(20, 30);
+                    int rockNumberThree = Random.Range(10, 20);
                     for (int r = 0; r < rockNumberThree; r++)
                     {
                         CreateRockLayer(180, 500);

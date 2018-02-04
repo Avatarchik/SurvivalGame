@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
     void SetUnderwater()
     {
         RenderSettings.fogColor = underwaterColor;
-        RenderSettings.fogDensity = 0.01f;
+        RenderSettings.fogDensity = 0.075f;
 
         controller.m_GravityMultiplier = 0.2f;
         controller.m_Jump = false;
@@ -195,7 +195,8 @@ public class PlayerManager : MonoBehaviour
                 }
                 else if(hit.transform.gameObject.tag == "CraftingInterface")
                 {
-
+                    CraftingInterface curCrafting = hit.transform.gameObject.GetComponent<CraftingInterface>();
+                    curCrafting.isOpen = !curCrafting.isOpen;
                 }
                 else
                 {
@@ -365,13 +366,16 @@ public class PlayerManager : MonoBehaviour
         GUI.Box(new Rect(5, Screen.height - 160, 200 * (health / maxHealth), 30), "Health: " + health + " / " + maxHealth);
 
         GUI.Box(new Rect(5, Screen.height - 130, 200, 30), "");
-        GUI.Box(new Rect(5, Screen.height - 130, 200 * (hunger / maxHunger), 30), "Hunger: " + hunger + " / " + maxHunger);
+        GUI.Box(new Rect(5, Screen.height - 130, 200 * (stamina / maxStamina), 30), "Stamina: " + stamina + " / " + maxStamina);
 
         GUI.Box(new Rect(5, Screen.height - 100, 200, 30), "");
-        GUI.Box(new Rect(5, Screen.height - 100, 200 * (stamina / maxStamina), 30), "Stamina: " + stamina + " / " + maxStamina);
+        GUI.Box(new Rect(5, Screen.height - 100, 200 * (hunger / maxHunger), 30), "Hunger: " + hunger + " / " + maxHunger);
 
         GUI.Box(new Rect(5, Screen.height - 70, 200, 30), "");
-        GUI.Box(new Rect(5, Screen.height - 70, 200 * (coldness / maxColdness), 30), "Coldness: " + coldness + " / " + maxColdness);
+        GUI.Box(new Rect(5, Screen.height - 70, 200 * (thirst / maxThirst), 30), "Thirst: " + thirst + " / " + maxThirst);
+
+        GUI.Box(new Rect(5, Screen.height - 40, 200, 30), "");
+        GUI.Box(new Rect(5, Screen.height - 40, 200 * (coldness / maxColdness), 30), "Coldness: " + coldness + " / " + maxColdness);
 
         if (pauseMenu)
         {

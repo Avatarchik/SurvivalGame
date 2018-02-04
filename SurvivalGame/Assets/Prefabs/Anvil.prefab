@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33205554474249876}
   - component: {fileID: 23613235018788634}
   - component: {fileID: 64064739035425722}
-  - component: {fileID: 95761833997757804}
+  - component: {fileID: 114913078782207664}
   m_Layer: 0
   m_Name: Anvil
   m_TagString: CraftingInterface
@@ -98,20 +98,378 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 005534fececf65f4e80108b497711b14, type: 3}
---- !u!95 &95761833997757804
-Animator:
-  serializedVersion: 3
+--- !u!114 &114913078782207664
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992289145314606}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 005534fececf65f4e80108b497711b14, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f5ae6b3b9973545a17a09575bb771e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  itemList:
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  - item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  slotY: 9
+  slotX: 5
