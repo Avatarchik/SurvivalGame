@@ -45,6 +45,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
         if (seed == 0)
         {
             seed = Random.Range(1, int.MaxValue);
+            Debug.Log("Seed has been randomly assigned to: " + seed);
         }
 
         heightMapSettings.noiseSettings.seed = seed;
@@ -53,6 +54,8 @@ public class SingleplayerWorldCreator : MonoBehaviour
         heightMapSettings.noiseSettings.persistance = persistance;
         heightMapSettings.noiseSettings.lacunarity = lacunarity;
         heightMapSettings.heightMultiplier = heightMulti;
+
+        Debug.Log("Seed has set to: " + heightMapSettings.noiseSettings.seed);
 
         SpawnPlayer();
 

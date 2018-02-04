@@ -16,8 +16,6 @@ public class WaterOpti : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, 1000))
         {
-            Debug.Log("hit at: " + hit.point.y);
-
             if (hit.point.y < 125f)
             {
                 removeWater = false;
