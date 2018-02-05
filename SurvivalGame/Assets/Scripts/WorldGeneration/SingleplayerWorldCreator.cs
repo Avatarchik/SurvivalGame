@@ -81,6 +81,10 @@ public class SingleplayerWorldCreator : MonoBehaviour
             {
                 worldLoader = true;
             }
+            if (GUI.Button(new Rect(5, 95, 250, 40), "Quit Game"))
+            {
+                Application.Quit();
+            }
 
             if (createWorld)
             {

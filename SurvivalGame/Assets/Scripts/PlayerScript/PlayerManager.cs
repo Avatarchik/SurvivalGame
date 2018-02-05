@@ -390,8 +390,7 @@ public class PlayerManager : MonoBehaviour
 
             if (GUI.Button(new Rect(5, 30, 240, 30), "Quit"))
             {
-                worldCreator.inGame = false;
-                Destroy(gameObject);
+                Application.LoadLevel(0);
             }
 
             GUI.EndGroup();
