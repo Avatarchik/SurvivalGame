@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NetworkTest.unity
     guid: bd80955ca30571b47bdbb49672f8f489
+  - enabled: 1
+    path: Assets/Scenes/PerformanceTest.unity
+    guid: af9ff5002ee03f043bbf741b352ed3e2
