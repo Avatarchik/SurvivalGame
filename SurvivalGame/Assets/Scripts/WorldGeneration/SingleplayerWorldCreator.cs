@@ -87,11 +87,11 @@ public class SingleplayerWorldCreator : MonoBehaviour
                 Application.LoadLevel(2);
             }
 
-            if (GUI.Button(new Rect(5, 150, 250, 40), "Network Prototype"))
+            if (GUI.Button(new Rect(5, 140, 250, 40), "Network Prototype"))
             {
                 Application.LoadLevel(1);
             }
-            if (GUI.Button(new Rect(5, 195, 250, 40), "Quit Game"))
+            if (GUI.Button(new Rect(5, 185, 250, 40), "Quit Game"))
             {
                 Application.Quit();
             }
