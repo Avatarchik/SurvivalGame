@@ -82,9 +82,19 @@ public class SingleplayerWorldCreator : MonoBehaviour
                 worldLoader = true;
             }
 
-            if (GUI.Button(new Rect(5, 95, 250, 40), "Performance Test"))
+            if (Application.loadedLevel == 0)
             {
-                Application.LoadLevel(2);
+                if (GUI.Button(new Rect(5, 95, 250, 40), "Performance Test"))
+                {
+                    Application.LoadLevel(2);
+                }
+            }
+            else
+            {
+                if (GUI.Button(new Rect(5, 95, 250, 40), "Game Scene"))
+                {
+                    Application.LoadLevel(0);
+                }
             }
 
             if (GUI.Button(new Rect(5, 140, 250, 40), "Network Prototype"))
