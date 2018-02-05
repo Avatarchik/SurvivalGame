@@ -45,6 +45,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
         if (seed == 0)
         {
             seed = Random.Range(1, int.MaxValue);
+            Debug.Log("Seed has been randomly assigned to: " + seed);
         }
 
         heightMapSettings.noiseSettings.seed = seed;
@@ -53,6 +54,8 @@ public class SingleplayerWorldCreator : MonoBehaviour
         heightMapSettings.noiseSettings.persistance = persistance;
         heightMapSettings.noiseSettings.lacunarity = lacunarity;
         heightMapSettings.heightMultiplier = heightMulti;
+
+        Debug.Log("Seed has set to: " + heightMapSettings.noiseSettings.seed);
 
         SpawnPlayer();
 
@@ -77,6 +80,30 @@ public class SingleplayerWorldCreator : MonoBehaviour
             if (GUI.Button(new Rect(5, 50, 250, 40), "World Browser"))
             {
                 worldLoader = true;
+            }
+
+            if (Application.loadedLevel == 0)
+            {
+                if (GUI.Button(new Rect(5, 95, 250, 40), "Performance Test"))
+                {
+                    Application.LoadLevel(2);
+                }
+            }
+            else
+            {
+                if (GUI.Button(new Rect(5, 95, 250, 40), "Game Scene"))
+                {
+                    Application.LoadLevel(0);
+                }
+            }
+
+            if (GUI.Button(new Rect(5, 140, 250, 40), "Network Prototype"))
+            {
+                Application.LoadLevel(1);
+            }
+            if (GUI.Button(new Rect(5, 185, 250, 40), "Quit Game"))
+            {
+                Application.Quit();
             }
 
             if (createWorld)

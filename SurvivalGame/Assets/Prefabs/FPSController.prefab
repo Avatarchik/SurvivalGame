@@ -224,7 +224,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 100000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -675,7 +675,6 @@ MonoBehaviour:
   cam: {fileID: 1245436854120946}
   skin: {fileID: 11400000, guid: ca5133cfbbe35124b968d4aaa35de3e3, type: 2}
   invOpen: 0
-  craftOpen: 0
   database: {fileID: 0}
   items:
   - item:
@@ -935,9 +934,6 @@ MonoBehaviour:
       thirstReplenish: 0
       hungerReplenish: 0
     stack: 0
-  itemsToBeRemoved:
-  - ID: 0
-    amount: 0
   selectedItemHotbar: 0
   curCrafting: 0
   hunger: 0
@@ -955,9 +951,10 @@ MonoBehaviour:
   - {fileID: 1231346708432254}
   - {fileID: 1642465699921534}
   isUnderwater: 0
-  normalColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 0}
-  underwaterColor: {r: 0, g: 0.27586195, b: 0.4705882, a: 0}
+  normalColor: {r: 0.74264705, g: 1, b: 0.97870183, a: 1}
+  underwaterColor: {r: 0, g: 0.46551704, b: 0.7941176, a: 0}
   waterLevel: 94.6
+  anvil: {fileID: 1992289145314606, guid: 7044b47534396b4499a9f16061e9e76f, type: 2}
 --- !u!114 &114671082605374852
 MonoBehaviour:
   m_ObjectHideFlags: 1

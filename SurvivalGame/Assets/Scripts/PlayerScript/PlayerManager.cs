@@ -19,7 +19,6 @@ public class PlayerManager : MonoBehaviour
     public GUISkin skin;
     public bool invOpen = false;
     private bool pickedItemFromInv = false;
-    public bool craftOpen = false;
 
     public Database database;
     public List<InventoryItem> items;
@@ -44,6 +43,8 @@ public class PlayerManager : MonoBehaviour
     public Color normalColor;
     public Color underwaterColor;
     public float waterLevel;
+
+    public GameObject anvil;
 
     void Start()
     {
@@ -80,7 +81,7 @@ public class PlayerManager : MonoBehaviour
     void SetUnderwater()
     {
         RenderSettings.fogColor = underwaterColor;
-        RenderSettings.fogDensity = 0.01f;
+        RenderSettings.fogDensity = 0.075f;
 
         controller.m_GravityMultiplier = 0.2f;
         controller.m_Jump = false;
@@ -194,7 +195,8 @@ public class PlayerManager : MonoBehaviour
                 }
                 else if(hit.transform.gameObject.tag == "CraftingInterface")
                 {
-
+                    CraftingInterface curCrafting = hit.transform.gameObject.GetComponent<CraftingInterface>();
+                    curCrafting.isOpen = !curCrafting.isOpen;
                 }
                 else
                 {
@@ -205,7 +207,14 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            craftOpen = !craftOpen;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 3.3f))
+            {
+                Quaternion anvilRot = new Quaternion(-90f, 0f, 0f, 0f);
+                Instantiate(anvil, hit.point, anvilRot);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -248,7 +257,7 @@ public class PlayerManager : MonoBehaviour
         }
 
 
-        if(!pauseMenu && !craftOpen && !invOpen /*&& !curShip.playerAtWheel*/)
+        if(!pauseMenu && /*!craftOpen &&*/ !invOpen /*&& !curShip.playerAtWheel*/)
         {
             controller.enabled = true;
 
@@ -301,16 +310,19 @@ public class PlayerManager : MonoBehaviour
 
         if (hunger >= maxHunger && health > 0)
         {
+            hunger = maxHunger;
             health -= 1.5f * Time.deltaTime;
         }
 
         if (thirst >= maxThirst && health > 0)
         {
+            thirst = maxThirst;
             health -= 2.5f * Time.deltaTime;
         }
 
         if (coldness >= maxColdness && health > 0)
         {
+            coldness = maxColdness;
             health -= 0.5f * Time.deltaTime;
         }
 
@@ -349,7 +361,21 @@ public class PlayerManager : MonoBehaviour
         GUI.skin = skin;
 
         GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "");
-        GUI.Box (new Rect (0, 0, 120, 30), "Health: " + health + " / " + maxHealth);
+
+        GUI.Box(new Rect(5, Screen.height - 160, 200, 30), "");
+        GUI.Box(new Rect(5, Screen.height - 160, 200 * (health / maxHealth), 30), "Health: " + health + " / " + maxHealth);
+
+        GUI.Box(new Rect(5, Screen.height - 130, 200, 30), "");
+        GUI.Box(new Rect(5, Screen.height - 130, 200 * (stamina / maxStamina), 30), "Stamina: " + stamina + " / " + maxStamina);
+
+        GUI.Box(new Rect(5, Screen.height - 100, 200, 30), "");
+        GUI.Box(new Rect(5, Screen.height - 100, 200 * (hunger / maxHunger), 30), "Hunger: " + hunger + " / " + maxHunger);
+
+        GUI.Box(new Rect(5, Screen.height - 70, 200, 30), "");
+        GUI.Box(new Rect(5, Screen.height - 70, 200 * (thirst / maxThirst), 30), "Thirst: " + thirst + " / " + maxThirst);
+
+        GUI.Box(new Rect(5, Screen.height - 40, 200, 30), "");
+        GUI.Box(new Rect(5, Screen.height - 40, 200 * (coldness / maxColdness), 30), "Coldness: " + coldness + " / " + maxColdness);
 
         if (pauseMenu)
         {
@@ -364,8 +390,7 @@ public class PlayerManager : MonoBehaviour
 
             if (GUI.Button(new Rect(5, 30, 240, 30), "Quit"))
             {
-                worldCreator.inGame = false;
-                Destroy(gameObject);
+                Application.LoadLevel(0);
             }
 
             GUI.EndGroup();
@@ -390,15 +415,6 @@ public class PlayerManager : MonoBehaviour
                 GUI.Label(new Rect(e.mousePosition.x + 15, e.mousePosition.y, 35, 35), draggedItem.stack.ToString(), skin.GetStyle("CustomLabel"));
             }
         }
-
-        if (craftOpen)
-        {
-            controller.enabled = false;
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
     }
 
     void DrawInventory()

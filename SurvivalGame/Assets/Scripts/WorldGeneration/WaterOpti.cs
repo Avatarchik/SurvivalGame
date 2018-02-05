@@ -5,28 +5,33 @@ using UnityEngine;
 public class WaterOpti : MonoBehaviour {
 
     PlayerManager manager;
+    public bool removeWater;
 
     void Start()
     {
         manager = GameObject.FindObjectOfType<PlayerManager>();
 
-        /*RaycastHit hit;
+        RaycastHit hit;
         Ray ray = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.down);
 
         if (Physics.Raycast(ray, out hit, 1000))
         {
-            Debug.Log("hit at: " + hit.point.y);
-
             if (hit.point.y < 125f)
             {
-                Debug.Log("Didn't destroy water");
+                removeWater = false;
             }
             else
             {
-                Debug.Log("Destroyed water tile because water height was: " + hit.point.y);
-                Destroy(this.gameObject);
+                removeWater = true;
             }
-        }*/
+        }
+        else
+        {
+            if(hit.transform == null)
+            {
+                removeWater = true;
+            }
+        }
     }
 
     private void Update()
