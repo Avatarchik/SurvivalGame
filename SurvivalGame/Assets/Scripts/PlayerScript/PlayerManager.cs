@@ -69,6 +69,8 @@ public class PlayerManager : MonoBehaviour
         AddItem(4, 1);
         AddItem(5, 1);
         AddItem(6, 1);
+        AddItem(8, 1);
+        AddItem(9, 1);
 
         stamina = maxStamina;
         health = maxHealth;
@@ -441,6 +443,24 @@ public class PlayerManager : MonoBehaviour
                             previousIndex = i;
                             items[i] = new InventoryItem();
                             pickedItemFromInv = true;
+                        }
+
+                        if (e.button == 1)
+                        {
+                            if(items[i].item.iType == Item.ItemType.consumable)
+                            {
+                                hunger += items[i].item.hungerReplenish;
+                                thirst += items[i].item.thirstReplenish;
+
+                                if (items[i].stack == 1)
+                                {
+                                    items[i] = new InventoryItem();
+                                }
+                                else
+                                {
+                                    items[i].stack -= 1;
+                                }
+                            }
                         }
 
                         if (e.type == EventType.MouseUp && draggingItem)
