@@ -101,7 +101,11 @@ public class SingleplayerWorldCreator : MonoBehaviour
             {
                 Application.LoadLevel(1);
             }
-            if (GUI.Button(new Rect(5, 185, 250, 40), "Quit Game"))
+            if (GUI.Button(new Rect(5, 185, 250, 40), "Prototype Scene"))
+            {
+                Application.LoadLevel(3);
+            }
+            if (GUI.Button(new Rect(5, 230, 250, 40), "Quit Game"))
             {
                 Application.Quit();
             }
@@ -122,6 +126,10 @@ public class SingleplayerWorldCreator : MonoBehaviour
                 GUI.Label(new Rect(5, 60, 100, 30), "World Seed:");
                 int.TryParse(GUI.TextField(new Rect(105, 60, 100, 30), seed.ToString()), out seed);
 
+                if (GUI.Button(new Rect(5, 95, 120, 30), "Test Seed"))
+                {
+                    seed = 1771046141;
+                }
 
                 /*GUI.Label(new Rect(105, 95, 100, 30), "Risky Settings");
 

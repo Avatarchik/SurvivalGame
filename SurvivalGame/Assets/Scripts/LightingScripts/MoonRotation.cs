@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SunRotation : MonoBehaviour {
+public class MoonRotation : MonoBehaviour {
 
-	public Light sun;
+	public GameObject Moon;
 	public float secondsInFullDay = 120f;
 	[Range(0,1)]
 	public float currentTimeOfDay = 0;
@@ -14,7 +14,7 @@ public class SunRotation : MonoBehaviour {
 	float sunInitialIntensity;
 
 	void Start() {
-		sunInitialIntensity = sun.intensity;
+		//sunInitialIntensity = sun.intensity;
 	}
 
 	void Update() {
@@ -28,7 +28,7 @@ public class SunRotation : MonoBehaviour {
 	}
 
 	void UpdateSun() {
-		sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, -50);
+		Moon.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
 
 		float intensityMultiplier = 1;
 		if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f) {
@@ -41,6 +41,6 @@ public class SunRotation : MonoBehaviour {
 			intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
 		}
 
-		sun.intensity = sunInitialIntensity * intensityMultiplier;
+		//Moon.intensity = sunInitialIntensity * intensityMultiplier;
 	}
 }

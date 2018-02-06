@@ -17,24 +17,28 @@ public class PlayerManager : MonoBehaviour
     bool pauseMenu = false;
 
     public GUISkin skin;
+    public Texture2D crosshair;
     public bool invOpen = false;
-    private bool pickedItemFromInv = false;
+    [HideInInspector]
+    public bool pickedItemFromInv = false;
 
     public Database database;
     public List<InventoryItem> items;
     public List<InventoryItem> hotbarItems;
 
-    bool draggingItem;
-    InventoryItem draggedItem;
-    int previousIndex;
+    [HideInInspector]
+    public bool draggingItem;
+    [HideInInspector]
+    public InventoryItem draggedItem;
+    [HideInInspector]
+    public int previousIndex;
 
     public int selectedItemHotbar;
     public int curCrafting;
 
-    public float hunger, thirst, stamina, coldness, health;
-    public float maxHunger, maxThirst, maxStamina, maxColdness, maxHealth;
+    public float hunger, thirst, stamina, health;
+    public float maxHunger, maxThirst, maxStamina, maxHealth;
     private bool running;
-    private bool triggeringFireplace;
 
     public List<GameObject> tools;
 
@@ -44,7 +48,7 @@ public class PlayerManager : MonoBehaviour
     public Color underwaterColor;
     public float waterLevel;
 
-    public GameObject anvil;
+    public GameObject craftingTable;
 
     void Start()
     {
@@ -196,6 +200,7 @@ public class PlayerManager : MonoBehaviour
                 else if(hit.transform.gameObject.tag == "CraftingInterface")
                 {
                     CraftingInterface curCrafting = hit.transform.gameObject.GetComponent<CraftingInterface>();
+                    curCrafting.pManager = this;
                     curCrafting.isOpen = !curCrafting.isOpen;
                 }
                 else
@@ -212,8 +217,9 @@ public class PlayerManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 3.3f))
             {
-                Quaternion anvilRot = new Quaternion(-90f, 0f, 0f, 0f);
-                Instantiate(anvil, hit.point, anvilRot);
+                Quaternion craftingRot = new Quaternion(0f, 0f, 0f, 0f);
+                Vector3 craftingPos = new Vector3(hit.point.x, hit.point.y + 0.6f, hit.point.z);
+                Instantiate(craftingTable, craftingPos, craftingRot);
             }
         }
 
@@ -299,7 +305,7 @@ public class PlayerManager : MonoBehaviour
             tools[2].active = false;
         }
 
-        if (health < maxHealth && coldness < maxColdness && hunger < maxHunger && thirst < maxThirst)
+        if (health < maxHealth && hunger < maxHunger && thirst < maxThirst)
             health += 0.5f * Time.deltaTime;
 
         if (hunger < maxHunger)
@@ -320,12 +326,6 @@ public class PlayerManager : MonoBehaviour
             health -= 2.5f * Time.deltaTime;
         }
 
-        if (coldness >= maxColdness && health > 0)
-        {
-            coldness = maxColdness;
-            health -= 0.5f * Time.deltaTime;
-        }
-
         if (health <= 0)
         {
             Die();
@@ -339,16 +339,6 @@ public class PlayerManager : MonoBehaviour
 
         if (stamina <= 0)
             print("Stamina = 0, you can't sprint anymore. Wait a little bit to sprint again.");
-
-        if (triggeringFireplace && coldness > 0)
-        {
-            coldness -= 1 * Time.deltaTime;
-        }
-
-        if (triggeringFireplace == false)
-        {
-            coldness += 1 * Time.deltaTime;
-        }
     }
 
     public void UpdateHealth(int change)
@@ -360,7 +350,7 @@ public class PlayerManager : MonoBehaviour
     {
         GUI.skin = skin;
 
-        GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "");
+        GUI.DrawTexture(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), crosshair);
 
         GUI.Box(new Rect(5, Screen.height - 160, 200, 30), "");
         GUI.Box(new Rect(5, Screen.height - 160, 200 * (health / maxHealth), 30), "Health: " + health + " / " + maxHealth);
@@ -373,9 +363,6 @@ public class PlayerManager : MonoBehaviour
 
         GUI.Box(new Rect(5, Screen.height - 70, 200, 30), "");
         GUI.Box(new Rect(5, Screen.height - 70, 200 * (thirst / maxThirst), 30), "Thirst: " + thirst + " / " + maxThirst);
-
-        GUI.Box(new Rect(5, Screen.height - 40, 200, 30), "");
-        GUI.Box(new Rect(5, Screen.height - 40, 200 * (coldness / maxColdness), 30), "Coldness: " + coldness + " / " + maxColdness);
 
         if (pauseMenu)
         {
@@ -623,28 +610,8 @@ public class PlayerManager : MonoBehaviour
         return result;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Fireplace")
-        {
-            triggeringFireplace = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Fireplace")
-        {
-            triggeringFireplace = false;
-        }
-    }
-
     void Die()
     {
-        if (health <= 0 && coldness >= maxColdness)
-        {
-
-        }
         if (health <= 0 && hunger >= maxHunger)
         {
 

@@ -674,7 +674,9 @@ MonoBehaviour:
   manager: {fileID: 114463072869912090}
   cam: {fileID: 1245436854120946}
   skin: {fileID: 11400000, guid: ca5133cfbbe35124b968d4aaa35de3e3, type: 2}
+  crosshair: {fileID: 2800000, guid: fa5a47a5d441be0418a1f9a77257990b, type: 3}
   invOpen: 0
+  pickedItemFromInv: 0
   database: {fileID: 0}
   items:
   - item:
@@ -934,17 +936,26 @@ MonoBehaviour:
       thirstReplenish: 0
       hungerReplenish: 0
     stack: 0
+  draggingItem: 0
+  draggedItem:
+    item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  previousIndex: 0
   selectedItemHotbar: 0
   curCrafting: 0
   hunger: 0
   thirst: 0
   stamina: 0
-  coldness: 0
   health: 100
   maxHunger: 100
   maxThirst: 100
   maxStamina: 100
-  maxColdness: 100
   maxHealth: 100
   tools:
   - {fileID: 1123678729167676}
@@ -954,7 +965,8 @@ MonoBehaviour:
   normalColor: {r: 0.74264705, g: 1, b: 0.97870183, a: 1}
   underwaterColor: {r: 0, g: 0.46551704, b: 0.7941176, a: 0}
   waterLevel: 94.6
-  anvil: {fileID: 1992289145314606, guid: 7044b47534396b4499a9f16061e9e76f, type: 2}
+  craftingTable: {fileID: 1052797416288502, guid: ad2197b6eedf3de42b00a0a8e1254ab6,
+    type: 2}
 --- !u!114 &114671082605374852
 MonoBehaviour:
   m_ObjectHideFlags: 1
