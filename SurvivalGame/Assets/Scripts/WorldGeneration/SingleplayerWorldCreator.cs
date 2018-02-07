@@ -74,12 +74,9 @@ public class SingleplayerWorldCreator : MonoBehaviour
         if (inGame == false)
         {
 
-            if (GUI.Button(new Rect(5, 5, 250, 40), "Create World"))
-                createWorld = true;
-
-            if (GUI.Button(new Rect(5, 50, 250, 40), "World Browser"))
+            if (GUI.Button(new Rect(5, 5, 250, 40), "Create World(Old News)"))
             {
-                worldLoader = true;
+                createWorld = true;
             }
 
             if (Application.loadedLevel == 0)
@@ -105,7 +102,11 @@ public class SingleplayerWorldCreator : MonoBehaviour
             {
                 Application.LoadLevel(3);
             }
-            if (GUI.Button(new Rect(5, 230, 250, 40), "Quit Game"))
+            if (GUI.Button(new Rect(5, 230, 250, 40), "Main Game Scene(WIP)"))
+            {
+                Application.LoadLevel(4);
+            }
+            if (GUI.Button(new Rect(5, 275, 250, 40), "Quit Game"))
             {
                 Application.Quit();
             }
