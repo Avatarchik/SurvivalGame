@@ -102,9 +102,9 @@ public class SingleplayerWorldCreator : MonoBehaviour
             {
                 Application.LoadLevel(3);
             }
-            if (GUI.Button(new Rect(5, 230, 250, 40), "Main Game Scene(WIP)"))
+            if (GUI.Button(new Rect(5, 230, 250, 40), "Nothing to see here"))
             {
-                Application.LoadLevel(4);
+                //Application.LoadLevel(4);
             }
             if (GUI.Button(new Rect(5, 275, 250, 40), "Quit Game"))
             {

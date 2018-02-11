@@ -96,12 +96,13 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if ((transform.position.y < waterLevel) != isUnderwater)
+        /*if ((transform.position.y < waterLevel) != isUnderwater)
         {
             isUnderwater = transform.position.y < waterLevel;
             if (isUnderwater) SetUnderwater();
             if (!isUnderwater) SetNormal();
         }
+        */
 
         if (Input.GetMouseButtonDown(0))
         {
