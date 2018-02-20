@@ -7,6 +7,8 @@ public class SingleplayerWorldCreator : MonoBehaviour
     public GameObject playerPrefab;
     public Transform spawn;
 
+    public GameObject sun;
+
     private string worldName = "World";
     public int seed;
 
@@ -66,6 +68,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
     public void SpawnPlayer()
     {
         Instantiate(playerPrefab, spawn.position, Quaternion.identity);
+        sun.GetComponent<AuraAPI.AuraLight>().enabled = true;
     }
 
     void OnGUI()

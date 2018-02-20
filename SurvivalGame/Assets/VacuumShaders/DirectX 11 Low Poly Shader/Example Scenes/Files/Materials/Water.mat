@@ -96,13 +96,13 @@ Material:
     - _CubeIsHDR: 0
     - _Cutoff: 0
     - _DetailNormalMapScale: 1
-    - _DisplaceAmplitude: 87.14
+    - _DisplaceAmplitude: 0.5
     - _DisplaceBlendType: 1
     - _DisplaceDirection: 305
-    - _DisplaceFrequency: 2556.9
-    - _DisplaceNoiseCoef: 76.97
+    - _DisplaceFrequency: 0.1
+    - _DisplaceNoiseCoef: 0.5
     - _DisplaceScriptSynchronize: 1
-    - _DisplaceSpeed: 66.12
+    - _DisplaceSpeed: 0.5
     - _DisplaceStrength: 2.31
     - _DisplaceType: 0
     - _Dsiplace_LABEL: 0

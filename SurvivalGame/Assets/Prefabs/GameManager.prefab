@@ -73,6 +73,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1416140639532186, guid: 78bcee562a2ad3b4eb72814f6e62b614,
     type: 2}
   spawn: {fileID: 4637982022513734}
+  sun: {fileID: 0}
   seed: 0
   inGame: 0
   worldLoader: 0

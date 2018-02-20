@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30423084, g: 0.30956903, b: 0.29096353, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &127695804
+--- !u!43 &170929926
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -480,6 +480,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114379907439807930, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d,
+        type: 2}
+      propertyPath: sun
+      value: 
+      objectReference: {fileID: 944547300}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7de1ba5dfcd9cd43a0515d2c2afae2d, type: 2}
   m_IsPrefabParent: 0
@@ -546,7 +551,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 522957207}
-  m_Mesh: {fileID: 127695804}
+  m_Mesh: {fileID: 170929926}
 --- !u!4 &522957210
 Transform:
   m_ObjectHideFlags: 0
@@ -668,9 +673,19 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114897870657128142, guid: 5689ddba594330b41b3afa32cfe8ad74,
+        type: 2}
+      propertyPath: currentTimeOfDay
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5689ddba594330b41b3afa32cfe8ad74, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &944547300 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1512755618638822, guid: 5689ddba594330b41b3afa32cfe8ad74,
+    type: 2}
+  m_PrefabInternal: {fileID: 944547299}
 --- !u!1 &1008436972
 GameObject:
   m_ObjectHideFlags: 0
