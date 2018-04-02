@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114003984531817468}
   - component: {fileID: 114947885663800468}
   m_Layer: 0
-  m_Name: FPSControllerNetwork
+  m_Name: NetPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1262131496412818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.698101, y: 2.828, z: 14.659717}
+  m_LocalPosition: {x: 50.251442, y: 34.85196, z: 49.923225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4755662778583670}
@@ -737,8 +737,8 @@ MonoBehaviour:
     BobAmount: 0.1
   m_StepInterval: 5
   m_FootstepSounds:
-  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
-  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
   m_Jump: 0
@@ -754,13 +754,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3807d05fedaa8d046b6598f9118f3c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curShip: {fileID: 0}
   worldCreator: {fileID: 0}
   controller: {fileID: 114535973117643984}
   manager: {fileID: 114550711640387940}
   cam: {fileID: 1300490670353094}
   skin: {fileID: 11400000, guid: ca5133cfbbe35124b968d4aaa35de3e3, type: 2}
+  crosshair: {fileID: 0}
   invOpen: 0
-  craftOpen: 0
+  pickedItemFromInv: 0
   database: {fileID: 0}
   items:
   - item:
@@ -1020,20 +1022,26 @@ MonoBehaviour:
       thirstReplenish: 0
       hungerReplenish: 0
     stack: 0
-  itemsToBeRemoved:
-  - ID: 0
-    amount: 0
+  draggingItem: 0
+  draggedItem:
+    item:
+      name: 
+      ID: 0
+      icon: {fileID: 0}
+      iType: 0
+      thirstReplenish: 0
+      hungerReplenish: 0
+    stack: 0
+  previousIndex: 0
   selectedItemHotbar: 0
   curCrafting: 0
   hunger: 0
   thirst: 0
   stamina: 0
-  coldness: 0
   health: 100
   maxHunger: 100
   maxThirst: 100
   maxStamina: 100
-  maxColdness: 100
   maxHealth: 100
   tools:
   - {fileID: 1455090895357890}
@@ -1043,6 +1051,7 @@ MonoBehaviour:
   normalColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 0}
   underwaterColor: {r: 0, g: 0.27586195, b: 0.4705882, a: 0}
   waterLevel: 94.6
+  craftingTable: {fileID: 0}
 --- !u!114 &114677410801861572
 MonoBehaviour:
   m_ObjectHideFlags: 1
