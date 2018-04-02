@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:SurvivalGame/Assets/Models/Building.meta
 guid: 64b39e847c4902c4f92e3c77c7322a93
 folderAsset: yes
 timeCreated: 1506535508
 licenseType: Free
+=======
+guid: f29bd753bc4170545ae5995e09de9590
+folderAsset: yes
+timeCreated: 1522692924
+licenseType: Pro
+>>>>>>> 1d7dcf310c2789f60b530024f150fd2eb8c5be0b:SurvivalGame/Assets/Models/Building.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

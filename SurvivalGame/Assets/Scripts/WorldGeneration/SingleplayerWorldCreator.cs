@@ -68,7 +68,7 @@ public class SingleplayerWorldCreator : MonoBehaviour
     public void SpawnPlayer()
     {
         Instantiate(playerPrefab, spawn.position, Quaternion.identity);
-        sun.GetComponent<AuraAPI.AuraLight>().enabled = true;
+        //sun.GetComponent<AuraAPI.AuraLight>().enabled = true;
     }
 
     void OnGUI()
